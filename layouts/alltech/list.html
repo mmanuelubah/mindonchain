@@ -1,0 +1,449 @@
+{{ define "main" }}
+<main class="alltech-page" id="main-content">
+
+  {{ partial "back_button.html" . }}
+
+  <header class="alltech-header">
+    <h1 class="alltech-title">AllTech Solutions</h1>
+    <p class="alltech-subtitle">Automotive hardware, ECU modules, programming guides, and diagnostic tools.</p>
+  </header>
+
+  <!-- ══ TAB NAVIGATION ═══════════════════════════════════ -->
+  <nav class="alltech-tabs" role="tablist" aria-label="AllTech sections">
+    <button class="alltech-tab active" role="tab" aria-selected="true" aria-controls="panel-shop" id="tab-shop">
+      Shop
+    </button>
+    <button class="alltech-tab" role="tab" aria-selected="false" aria-controls="panel-guides" id="tab-guides">
+      Guides
+    </button>
+  </nav>
+
+  <!-- ══ SHOP PANEL ═══════════════════════════════════════ -->
+  <section id="panel-shop" class="alltech-panel active" role="tabpanel" aria-labelledby="tab-shop">
+    <div class="shop-grid">
+      {{ $shopProducts := where site.RegularPages "Section" "shop" }}
+      {{ range sort $shopProducts "Date" "desc" }}
+      <a href="{{ .RelPermalink }}" class="shop-item-card">
+        <div class="shop-item-image">
+          {{ if .Params.images }}
+          <img src="{{ index .Params.images 0 }}" alt="{{ .Title }}" loading="lazy">
+          {{ else }}
+          <div class="placeholder-img">No Image</div>
+          {{ end }}
+        </div>
+        <div class="shop-item-info">
+          <h2 class="shop-item-title">{{ .Title }}</h2>
+          <p class="shop-item-price">${{ printf "%.2f" .Params.price }}</p>
+          {{ if .Params.in_stock }}
+          <span class="shop-item-badge in-stock">In Stock ({{ .Params.stock_count }})</span>
+          {{ else }}
+          <span class="shop-item-badge out-stock">Out of Stock</span>
+          {{ end }}
+        </div>
+      </a>
+      {{ end }}
+    </div>
+
+    {{ if eq (len $shopProducts) 0 }}
+    <div class="empty-state"><p>No products listed yet. Check back soon.</p></div>
+    {{ end }}
+  </section>
+
+  <!-- ══ GUIDES PANEL ═════════════════════════════════════ -->
+  <section id="panel-guides" class="alltech-panel" role="tabpanel" aria-labelledby="tab-guides" hidden>
+    <!-- Difficulty filters -->
+    <div class="guide-filters" role="group" aria-label="Filter by difficulty">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="beginner">Beginner</button>
+      <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+      <button class="filter-btn" data-filter="advanced">Advanced</button>
+    </div>
+
+    <div class="guides-list">
+      {{ $guides := where site.RegularPages "Section" "programming" }}
+      {{ range sort $guides "Date" "desc" }}
+      <article class="guide-item" data-difficulty="{{ .Params.difficulty | default "beginner" }}">
+        <a href="{{ .RelPermalink }}" class="guide-item-link">
+          <div class="guide-item-meta">
+            {{ if .Params.difficulty }}
+            <span class="difficulty-badge {{ .Params.difficulty }}">{{ .Params.difficulty | title }}</span>
+            {{ end }}
+            {{ if .Params.private }}
+            <span class="locked-badge">🔒 Buyer Only</span>
+            {{ end }}
+          </div>
+          <h2 class="guide-item-title">{{ .Title }}</h2>
+          <p class="guide-item-excerpt">{{ .Summary | plainify | truncate 120 }}</p>
+          <div class="guide-item-footer">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02 2006" }}</time>
+            <span class="read-time">{{ .ReadingTime }} min read</span>
+          </div>
+        </a>
+      </article>
+      {{ end }}
+    </div>
+
+    {{ if eq (len $guides) 0 }}
+    <div class="empty-state"><p>No guides published yet. Check back soon.</p></div>
+    {{ end }}
+  </section>
+
+</main>
+
+<!-- ══ STYLES ══════════════════════════════════════════════ -->
+<style>
+  .alltech-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 4rem;
+    color: var(--text-color);
+  }
+
+  .alltech-header {
+    margin-bottom: 2rem;
+  }
+
+  .alltech-title {
+    font-family: var(--pixel-font);
+    font-size: 2rem;
+    letter-spacing: 0.04em;
+    margin: 0 0 0.5rem;
+  }
+
+  .alltech-subtitle {
+    color: var(--text-color-secondary);
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ─ Tab navigation ─────────────────────────────────────── */
+  .alltech-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+  }
+
+  .alltech-tab {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-color-secondary);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    position: relative;
+  }
+
+  .alltech-tab:hover {
+    color: var(--text-color);
+  }
+
+  .alltech-tab.active {
+    color: var(--color-accent-primary, #00e5a0);
+    border-bottom-color: var(--color-accent-primary, #00e5a0);
+  }
+
+  .alltech-tab:focus-visible {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: -2px;
+  }
+
+  /* ─ Panels ─────────────────────────────────────────────── */
+  .alltech-panel {
+    display: none;
+  }
+
+  .alltech-panel.active {
+    display: block;
+  }
+
+  /* ─ Shop grid (reuses shop/list styles) ────────────────── */
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .shop-item-card {
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--color-bg-secondary);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shop-item-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px var(--color-accent-glow);
+    border-color: var(--color-accent-primary);
+  }
+
+  .shop-item-image {
+    aspect-ratio: 4/3;
+    background: var(--color-bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .shop-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .shop-item-info {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .shop-item-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-family: var(--body-font);
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .shop-item-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .shop-item-badge {
+    align-self: flex-start;
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: auto;
+  }
+
+  .shop-item-badge.in-stock {
+    background: var(--color-accent-muted);
+    color: var(--color-accent-primary);
+  }
+
+  .shop-item-badge.out-stock {
+    background: rgba(255, 107, 107, 0.1);
+    color: var(--color-error);
+  }
+
+  .placeholder-img {
+    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+  }
+
+  /* ─ Guide items ────────────────────────────────────────── */
+  .guide-filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-color-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--text-color-secondary);
+  }
+
+  .filter-btn.active {
+    background: var(--color-accent-primary, #00e5a0);
+    color: var(--color-text-inverse, #1a1b1e);
+    border-color: var(--color-accent-primary, #00e5a0);
+    font-weight: 600;
+  }
+
+  .guides-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .guide-item {
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+
+  .guide-item:hover {
+    border-color: var(--color-accent-primary);
+    transform: translateY(-2px);
+  }
+
+  .guide-item.hidden {
+    display: none;
+  }
+
+  .guide-item-link {
+    display: block;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .guide-item-meta {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .difficulty-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .difficulty-badge.beginner {
+    background: rgba(0, 229, 160, 0.12);
+    color: var(--color-accent-primary, #00e5a0);
+  }
+
+  .difficulty-badge.intermediate {
+    background: rgba(255, 179, 71, 0.12);
+    color: var(--color-warning, #ffb347);
+  }
+
+  .difficulty-badge.advanced {
+    background: rgba(255, 107, 107, 0.12);
+    color: var(--color-error, #ff6b6b);
+  }
+
+  .locked-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--color-bg-tertiary);
+    color: var(--text-color-secondary);
+  }
+
+  .guide-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.3rem;
+    line-height: 1.4;
+  }
+
+  .guide-item-excerpt {
+    font-size: 0.9rem;
+    color: var(--text-color-secondary);
+    margin: 0 0 0.75rem;
+    line-height: 1.55;
+  }
+
+  .guide-item-footer {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-color-secondary);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-color-secondary);
+  }
+
+  @media (max-width: 600px) {
+    .alltech-title {
+      font-size: 1.5rem;
+    }
+
+    .shop-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<!-- ══ SCRIPT ══════════════════════════════════════════════ -->
+<script>
+(function () {
+  // Tab switching
+  const tabs = document.querySelectorAll('.alltech-tab');
+  const panels = document.querySelectorAll('.alltech-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach(p => {
+        p.classList.remove('active');
+        p.setAttribute('hidden', '');
+      });
+
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      panel.classList.add('active');
+      panel.removeAttribute('hidden');
+    });
+
+    // Keyboard navigation between tabs
+    tab.addEventListener('keydown', (e) => {
+      let target;
+      if (e.key === 'ArrowRight') {
+        target = tab.nextElementSibling || tabs[0];
+      } else if (e.key === 'ArrowLeft') {
+        target = tab.previousElementSibling || tabs[tabs.length - 1];
+      }
+      if (target && target.classList.contains('alltech-tab')) {
+        target.focus();
+        target.click();
+        e.preventDefault();
+      }
+    });
+  });
+
+  // Difficulty filtering
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const guideItems = document.querySelectorAll('.guide-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      guideItems.forEach(item => {
+        if (filter === 'all' || item.dataset.difficulty === filter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+})();
+</script>
+
+{{ end }}

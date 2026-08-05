@@ -8,3 +8,5 @@ resources/_gen/
 # OS & editor
 .DS_Store
 .obsidian/workspace.json
+.gemini_frame*
+Design Inspo.mp4

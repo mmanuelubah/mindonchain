@@ -1,39 +1,9 @@
 /* ================= CUSTOM STYLES ================= */
 
-/* ─── CSS Variables mapping for Light / Dark Mode ─── */
-:root,
-html[data-theme="dark"] {
-  --text-color: #a9a9b3;
-  --text-color-secondary: #888888;
-  --bg-color: #232425;
-  --card-bg: #2a2a2a;
-  --border-color: #333333;
-  --accent-color: #e2e8f0;
-  /* Soft white for dark mode */
-  --pill-bg: #252528;
-  --pill-hover-bg: #333333;
-  --input-bg: #1a1a1a;
-  --tooltip-bg: #000000;
-  --tooltip-border: #333333;
-}
+/* ─── CSS Variables ─── */
+/* All design tokens are now in /css/design-system.css */
+/* Do NOT redeclare :root variables here. */
 
-html[data-theme="light"] {
-  --text-color: #222222;
-  --text-color-secondary: #666666;
-  --bg-color: #ffffff;
-  --card-bg: #f5f5f5;
-  --border-color: #dddddd;
-  --accent-color: #111827;
-  /* Near black for light mode */
-  --pill-bg: #e0e0e0;
-  --pill-hover-bg: #cccccc;
-  --input-bg: #f0f0f0;
-  --tooltip-bg: #ffffff;
-  --tooltip-border: #dddddd;
-}
-
-/* ─── Global font import ──────────────────────────── */
-/* VT323 is loaded inline in each template; no import needed here */
 
 /* ─── Post body ───────────────────────────────────── */
 /* Remove old overrides — single.html now owns all post-content rules */
@@ -61,27 +31,27 @@ html[data-theme="light"] {
    We bump these up from the per-template defaults for consistency.
 */
 .section-title {
-  font-size: 1.25rem !important;
-  margin-bottom: 0.9rem !important;
-  line-height: 1.5 !important;
+  font-size: 1.25rem;
+  margin-bottom: 0.9rem;
+  line-height: 1.5;
 }
 
 /* ─── Homepage nav-card titles ────────────────────── */
 .card-title {
-  font-size: 1.25rem !important;
-  margin-top: 5px !important;
-  margin-bottom: 5px !important;
-  line-height: 1.2 !important;
+  font-size: 1.25rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  line-height: 1.2;
 }
 
 .card-count {
-  font-size: 0.95rem !important;
+  font-size: 0.95rem;
 }
 
 /* Homepage nav card width */
 .card {
-  width: 150px !important;
-  padding: 1.0rem !important;
+  width: 150px;
+  padding: 1.0rem;
 }
 
 /* ─── Name tooltips (homepage) legacy removed ────────────────────── */
@@ -143,102 +113,117 @@ html[data-theme="light"] {
 .post-content li,
 .post-content blockquote,
 .post-content td {
-  font-family: 'Inter', sans-serif !important;
-  font-size: 1.0625rem !important;
-  line-height: 1.78 !important;
-  letter-spacing: -0.011em !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.78;
+  letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .post-content h1 {
-  font-size: 1.95rem !important;
-  font-weight: 700 !important;
-  line-height: 1.15 !important;
+  font-size: 1.95rem;
+  font-weight: 700;
+  line-height: 1.15;
   letter-spacing: -0.025em;
-  margin-bottom: 0.4em !important;
+  margin-bottom: 0.4em;
 }
 
 .post-content h2 {
-  font-size: 1.45rem !important;
-  font-weight: 600 !important;
-  line-height: 1.25 !important;
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.25;
   letter-spacing: -0.018em;
-  margin-top: 2em !important;
-  margin-bottom: 0.5em !important;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
 }
 
 .post-content h3 {
-  font-size: 1.15rem !important;
-  font-weight: 600 !important;
-  line-height: 1.3 !important;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
   letter-spacing: -0.012em;
-  margin-top: 1.6em !important;
-  margin-bottom: 0.4em !important;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
 }
 
 .post-content h4 {
-  font-size: 1.0625rem !important;
-  font-weight: 600 !important;
-  line-height: 1.35 !important;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
   letter-spacing: -0.008em;
-  margin-top: 1.4em !important;
-  margin-bottom: 0.35em !important;
+  margin-top: 1.4em;
+  margin-bottom: 0.35em;
 }
 
-/* ----------------------------------------------------------
-   2. OWNER NAME — SQUIGGLY UNDERLINE + HOVER TOOLTIP
-   ---------------------------------------------------------- */
 .owner-name-wrap {
   position: relative;
-  display: inline;
-  cursor: default;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='5' viewBox='0 0 20 5'%3E%3Cpath d='M0 4 Q2.5 0.5 5 2.5 Q7.5 4.5 10 2.5 Q12.5 0.5 15 2.5 Q17.5 4.5 20 2.5' fill='none' stroke='%23444' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-position: left bottom;
-  background-size: 20px 5px;
-  padding-bottom: 5px;
+  display: inline-block;
+  cursor: help;
+  padding-bottom: 2px;
 }
 
-html[data-theme="dark"] .owner-name-wrap {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='5' viewBox='0 0 20 5'%3E%3Cpath d='M0 4 Q2.5 0.5 5 2.5 Q7.5 4.5 10 2.5 Q12.5 0.5 15 2.5 Q17.5 4.5 20 2.5' fill='none' stroke='%23eee' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E");
+.owner-name-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent-primary, #00e5a0);
+  transition: width 0.2s ease;
+}
+
+.owner-name-wrap:hover::after,
+.owner-name-wrap:focus-visible::after {
+  width: 100%;
 }
 
 .owner-tooltip {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 12px);
+  top: auto;
   left: 50%;
   transform: translateX(-50%) translateY(4px);
-  min-width: 220px;
-  max-width: 300px;
-  padding: 0.5rem 0.8rem;
-  background-color: var(--tooltip-bg, #fefefe);
-  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.13));
+  min-width: 260px;
+  max-width: 320px;
+  padding: 0.8rem 1rem;
+  background-color: #2b1d14; /* Dark warm brown like the reference */
   border-radius: 8px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.05);
-  font-size: 0.8125rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-size: 0.85rem;
   font-weight: 400;
   line-height: 1.5;
-  color: var(--text-color, #555);
-  text-align: center;
+  color: #fcf8f2; /* Light cream text */
+  text-align: left;
   white-space: normal;
   font-style: normal;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.16s ease, transform 0.16s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
   z-index: 999;
-  font-family: 'VT323', monospace;
+  font-family: var(--body-font);
+}
+
+html[data-theme="dark"] .owner-tooltip {
+  background-color: #1a1512;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .owner-tooltip::after {
   content: '';
   position: absolute;
   top: 100%;
+  bottom: auto;
   left: 50%;
   transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: var(--tooltip-border, #fefefe);
+  border: 6px solid transparent;
+  border-top-color: #2b1d14;
+}
+
+html[data-theme="dark"] .owner-tooltip::after {
+  border-top-color: #1a1512;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -254,10 +239,11 @@ html[data-theme="dark"] .owner-name-wrap {
    ---------------------------------------------------------- */
 .moc-gate {
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: 50vh;
-  padding: 2rem 1rem;
+  margin-top: -120px; /* Pull up over the faded area */
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
 }
 
 .moc-gate-card {
@@ -284,10 +270,10 @@ html[data-theme="dark"] .owner-name-wrap {
 .moc-gate-tagline {
   font-style: italic;
   font-size: 1rem;
-  line-height: 1.55 !important;
+  line-height: 1.55;
   color: var(--text-color-secondary, #444);
-  margin: 0 !important;
-  font-family: var(--body-font) !important;
+  margin: 0;
+  font-family: var(--body-font);
 }
 
 .moc-gate-form {
@@ -351,25 +337,89 @@ html[data-theme="dark"] .owner-name-wrap {
 }
 
 .moc-pw-error {
-  font-size: 0.8125rem !important;
-  color: #c0392b !important;
+  font-size: 0.8125rem;
+  color: #c0392b;
   min-height: 1.1em;
-  margin: 0 !important;
+  margin: 0;
 }
 
 .moc-back-link {
   font-size: 0.875rem;
-  color: var(--accent-color, #3273dc) !important;
-  text-decoration: none !important;
+  color: var(--accent-color, #3273dc);
+  text-decoration: none;
   margin-top: 0.25rem;
 }
 
 .moc-back-link:hover {
-  text-decoration: underline !important;
+  text-decoration: underline;
+}
+
+.moc-gate-divider {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  margin: 1.5rem 0;
+  z-index: 1;
+}
+
+.moc-gate-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: var(--border-color);
+  z-index: -1;
+}
+
+.moc-gate-divider span {
+  background: var(--card-bg);
+  padding: 0 10px;
+  color: var(--text-color-secondary);
+  font-size: 0.875rem;
+}
+
+.moc-gate-actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+.moc-btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.moc-btn-secondary:hover {
+  background: var(--input-bg);
+  border-color: var(--text-color-secondary);
+}
+
+.moc-btn-tertiary {
+  font-size: 0.85rem;
+  color: var(--text-color-secondary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  transition: opacity 0.2s;
+}
+
+.moc-btn-tertiary:hover {
+  opacity: 0.75;
 }
 
 .moc-content-locked {
-  display: none !important;
+  display: none;
   visibility: hidden;
   pointer-events: none;
   user-select: none;
@@ -380,7 +430,7 @@ html[data-theme="dark"] .moc-gate-card {
 }
 
 html[data-theme="dark"] .moc-pw-error {
-  color: #e74c3c !important;
+  color: #e74c3c;
 }
 
 .moc-lock-badge {

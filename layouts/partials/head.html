@@ -24,47 +24,10 @@
 </title>
 {{ end }}
 
-<!-- NEW: VT323 (Headers) + Fira Sans (Body) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=VT323&family=Fira+Sans:wght@400;500;700&display=swap"
-    rel="stylesheet">
+<!-- Fonts loaded via extra-head.html (single combined request) -->
 
 <style>
-    :root {
-        /* Default Dark Theme */
-        --bg-color: #232426;
-        /* Slightly softer dark */
-        --card-bg: rgba(255, 255, 255, 0.06);
-        --text-color: #d1d5db;
-        /* Softer white for reading */
-        --text-color-secondary: #9ca3af;
-        --accent-color: #fff;
-        --border-color: rgba(255, 255, 255, 0.1);
-
-        --pixel-font: 'VT323', monospace;
-        --pixel-font-size-base: 1.3rem;
-
-        /* Body Font Settings */
-        --body-font: 'Fira Sans', sans-serif;
-        --body-font-weight: 500;
-        /* Medium per request */
-        --line-height-base: 1.85;
-        /* "good height" + "more height" */
-        --body-letter-spacing: 0.02em;
-        /* "text spacing" */
-    }
-
-    [data-theme="light"] {
-        /* Light Theme Overrides */
-        --bg-color: #f9fafb;
-        --card-bg: rgba(0, 0, 0, 0.05);
-        --text-color: #111827;
-        /* Near black for sharp contrast */
-        --text-color-secondary: #4b5563;
-        --accent-color: #000;
-        --border-color: rgba(0, 0, 0, 0.1);
-    }
-
+    /* Body overrides — tokens come from design-system.css */
     body {
         background-color: var(--bg-color) !important;
         color: var(--text-color) !important;
@@ -76,9 +39,7 @@
     }
 
     /* Force text color on links/lists to inherit */
-    a,
-    li,
-    p {
+    a, li, p {
         color: inherit;
         font-family: inherit;
     }

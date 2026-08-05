@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main class="home">
+<main class="home" id="main-content">
 
   <!-- ================= TOP SECTION ================= -->
   <div class="top-section">
@@ -22,43 +22,18 @@
 
   </div>
 
-  <!-- ================= NAV CARDS ================= -->
-  <div class="cards-container">
-    <a href="/posts/" class="card-link">
-      <div class="card">
-        <div class="card-emoji">✍️</div>
-        <div class="card-title">POSTS</div>
-        {{ $postCount := len (where .Site.RegularPages "Section" "posts") }}
-        <div class="card-count">{{ $postCount }}</div>
-      </div>
-    </a>
-
-    <a href="/books/" class="card-link">
-      <div class="card">
-        <div class="card-emoji">📖</div>
-        <div class="card-title">BOOKS</div>
-        {{ $bookCount := len (where .Site.RegularPages "Section" "books") }}
-        {{ if eq $bookCount 0 }}
-        {{ $bookCount = len (where .Site.RegularPages "Section" "Books") }}
-        {{ end }}
-        <div class="card-count">{{ $bookCount }}</div>
-      </div>
-    </a>
-
-    <a href="/about/" class="card-link">
-      <div class="card">
-        <div class="card-emoji">👨‍💻</div>
-        <div class="card-title">ABOUT</div>
-      </div>
-    </a>
-
-    <a href="/colophon/" class="card-link">
-      <div class="card">
-        <div class="card-emoji">💾</div>
-        <div class="card-title">COLOPHON</div>
-      </div>
-    </a>
-  </div>
+  <!-- ================= INLINE NAV ================= -->
+  <nav class="inline-nav" aria-label="Main navigation">
+    <a href="/posts/" class="inline-nav__link">Posts</a>
+    <span class="inline-nav__sep" aria-hidden="true">·</span>
+    <a href="/alltech/" class="inline-nav__link">AllTech</a>
+    <span class="inline-nav__sep" aria-hidden="true">·</span>
+    <a href="/books/" class="inline-nav__link">Books</a>
+    <span class="inline-nav__sep" aria-hidden="true">·</span>
+    <a href="/colophon/" class="inline-nav__link">Colophon</a>
+    <span class="inline-nav__sep" aria-hidden="true">·</span>
+    <a href="/about/" class="inline-nav__link">About</a>
+  </nav>
 
   <hr class="section-separator">
 
@@ -111,39 +86,70 @@
 
   <hr class="section-separator">
 
-  <!-- ================= FEATURED WRITING ================= -->
+  <!-- ================= POSTS ================= -->
   <section class="writing-section">
-    <h2 class="section-title mono-header">FEATURED WRITING</h2>
+    <h2 class="section-title mono-header">LATEST POSTS</h2>
 
     <ul class="writing-list">
-      {{ $featured := where .Site.RegularPages "Params.featured" true }}
-      {{ range first 6 (sort $featured "Date" "desc") }}
+      {{ $posts := where .Site.RegularPages "Type" "posts" }}
+      {{ range first 6 (sort $posts "Date" "desc") }}
       <li class="writing-item">
         <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
         <small class="post-meta">{{ .Date.Format "Jan 02 2006" }}</small>
       </li>
       {{ end }}
     </ul>
+    
+    <div style="margin-top: 1.5rem;">
+      <a href="/posts/" class="view-all-link">View all posts →</a>
+    </div>
   </section>
 
   <hr class="section-separator">
 
-  <!-- ================= LATEST ROUNDUP ================= -->
-  <section>
-    <h2 class="section-title mono-header">LATEST ROUNDUP</h2>
-
-    <div class="highlight-box">
-      {{ $roundup := where .Site.RegularPages "Params.tags" "intersect" (slice "weekly-roundup") }}
-      {{ range first 1 (sort $roundup "Date" "desc") }}
-      <a href="{{ .RelPermalink }}" class="roundup-link">{{ .Title }}</a>
+  <!-- ================= BOOKS ================= -->
+  <section class="books-section">
+    <h2 class="section-title mono-header">BOOKS</h2>
+    
+    <ul class="writing-list">
+      {{ $books := where .Site.RegularPages "Type" "books" }}
+      {{ range first 5 (sort $books "Date" "desc") }}
+      <li class="writing-item">
+        <a href="{{ if .Params.link }}{{ .Params.link }}{{ else }}{{ .RelPermalink }}{{ end }}" class="post-link" target="_blank" rel="noopener noreferrer">{{ .Title }}</a>
+        {{ if .Params.author }}<small class="post-meta">{{ .Params.author }}</small>{{ end }}
+      </li>
       {{ end }}
+    </ul>
+
+    <div style="margin-top: 1.5rem;">
+      <a href="/books/" class="view-all-link">View all books →</a>
     </div>
+  </section>
+
+  <hr class="section-separator">
+
+  <!-- ================= COLOPHON ================= -->
+  <section class="colophon-section">
+    <h2 class="section-title mono-header">COLOPHON</h2>
+    {{ with .Site.GetPage "/colophon" }}
+    <div class="colophon-content" style="color: var(--text-color-secondary); line-height: 1.6;">
+      {{ .Content }}
+    </div>
+    <div style="margin-top: 1.5rem;">
+      <a href="/colophon/" class="view-all-link">Read full colophon →</a>
+    </div>
+    {{ else }}
+    <div class="colophon-content" style="color: var(--text-color-secondary); line-height: 1.6;">
+      <p>How this site is made and tendered.</p>
+    </div>
+    {{ end }}
   </section>
 
 </main>
 
 <!-- ================= AVATAR OVERLAY ================= -->
-<div id="avatarOverlay" class="avatar-overlay">
+<div id="avatarOverlay" class="avatar-overlay" role="dialog" aria-modal="true" aria-label="Avatar Image" tabindex="-1">
+  <button id="closeOverlayBtn" class="avatar-overlay-close" aria-label="Close avatar overlay">×</button>
   <img id="overlayImg" src="" alt="">
 </div>
 
@@ -252,6 +258,25 @@
   .avatar-overlay.active {
     opacity: 1;
     pointer-events: auto;
+  }
+
+  .avatar-overlay-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 8px;
+    border-radius: 4px;
+    z-index: 10000;
+  }
+
+  .avatar-overlay-close:focus-visible {
+    outline: 3px solid var(--color-accent-primary);
   }
 
   .avatar-overlay img {
@@ -506,6 +531,89 @@
     .reading-block {
       padding: .8rem 1rem .3rem;
     }
+
+    .shop-preview-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ─── Shop preview ─────────────────────────────────── */
+  .shop-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .shop-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .shop-preview-card {
+    display: block;
+    padding: 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+
+  .shop-preview-card:hover {
+    border-color: var(--color-accent-primary, #00e5a0);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0, 229, 160, 0.12);
+  }
+
+  .shop-preview-badge {
+    margin-bottom: 0.5rem;
+  }
+
+  .badge-stock {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-stock.in {
+    background: rgba(0, 229, 160, 0.12);
+    color: var(--color-accent-primary, #00e5a0);
+  }
+
+  .badge-stock.out {
+    background: rgba(255, 107, 107, 0.12);
+    color: var(--color-error, #ff6b6b);
+  }
+
+  .shop-preview-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 0.3rem;
+    line-height: 1.4;
+  }
+
+  .shop-preview-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-color);
+  }
+
+  .view-all-link {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: var(--color-accent-primary, #00e5a0);
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .view-all-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+    text-decoration-style: dotted;
   }
 </style>
 
@@ -514,16 +622,68 @@
   const avatar = document.getElementById("avatarBox");
   const overlay = document.getElementById("avatarOverlay");
   const overlayImg = document.getElementById("overlayImg");
+  const closeBtn = document.getElementById("closeOverlayBtn");
+  let lastFocusedElement;
 
-  avatar.onclick = () => {
+  function openOverlay() {
+    lastFocusedElement = document.activeElement;
     overlay.classList.add("active");
     overlayImg.src = avatar.querySelector("img").src;
-  };
+    overlay.focus();
+    // Prevent background scroll
+    document.body.style.overflow = "hidden";
+  }
 
-  overlay.onclick = () => overlay.classList.remove("active");
+  function closeOverlay() {
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+    }
+  }
+
+  avatar.addEventListener("click", openOverlay);
+  avatar.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openOverlay();
+    }
+  });
+
+  // Ensure avatar is focusable
+  avatar.setAttribute("tabindex", "0");
+  avatar.setAttribute("role", "button");
+  avatar.setAttribute("aria-label", "View larger avatar");
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay || e.target === closeBtn) {
+      closeOverlay();
+    }
+  });
 
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape") overlay.classList.remove("active");
+    if (!overlay.classList.contains("active")) return;
+    
+    if (e.key === "Escape") {
+      closeOverlay();
+    } else if (e.key === "Tab") {
+      // Focus trap
+      const focusableEls = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const firstFocusableEl = focusableEls[0];  
+      const lastFocusableEl = focusableEls[focusableEls.length - 1];
+      
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusableEl || document.activeElement === overlay) {
+          lastFocusableEl.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastFocusableEl) {
+          firstFocusableEl.focus();
+          e.preventDefault();
+        }
+      }
+    }
   });
 </script>
 

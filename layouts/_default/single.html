@@ -1,5 +1,5 @@
 {{ define "main" }}
-<article class="post-container">
+<article class="post-container" id="main-content">
 
   {{ partial "back_button.html" . }}
 
@@ -40,6 +40,10 @@
     {{- $pwKey := .Params.password_id | default "default" -}}
     {{- $pwValue := index .Site.Params.passwords $pwKey -}}
 
+    <div id="moc-content-wrapper" class="moc-content-preview">
+      {{ .Content }}
+    </div>
+
     <div id="moc-gate" class="moc-gate">
       <div class="moc-gate-card">
         <svg class="moc-lock-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="44" height="44"
@@ -50,65 +54,81 @@
           <line x1="24" y1="35.5" x2="24" y2="39.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
         </svg>
 
-        <p class="moc-gate-tagline">This post is password-protected,<br>but available on request.<br><br>Email me at <a
-            href="mailto:ubahchinaza@gmail.com">ubahchinaza@gmail.com</a></p>
+        <p class="moc-gate-tagline"><strong>🔒 This guide is for verified buyers</strong></p>
 
         <div class="moc-gate-form">
-          <label for="moc-pw-input">Password</label>
+          <label for="moc-pw-input">Enter your purchase code to unlock:</label>
           <div class="moc-input-row">
-            <input id="moc-pw-input" type="password" placeholder="Enter password" autocomplete="current-password" />
+            <input id="moc-pw-input" type="password" placeholder="e.g. MOC-XXXX-XXXX" autocomplete="current-password" />
             <button id="moc-pw-btn" type="button">Unlock &rarr;</button>
           </div>
           <p id="moc-pw-error" class="moc-pw-error" role="alert" aria-live="polite"></p>
         </div>
 
-        <a href="{{ $.Site.BaseURL }}posts/" class="moc-back-link">&larr; Back to posts</a>
-      </div>
-    </div>
+        <div class="moc-gate-divider">
+          <span>— or —</span>
+        </div>
 
-    <div id="moc-content" class="moc-content-locked" aria-hidden="true" inert>
-      {{ .Content }}
+        <div class="moc-gate-actions">
+          <a href="/shop/" class="moc-btn-secondary">Purchase Access — $29.99</a>
+          <a href="mailto:ubahchinaza@gmail.com" class="moc-btn-tertiary">Contact Tech Support</a>
+        </div>
+      </div>
     </div>
 
     <script>
       (function () {
-        var CORRECT = {{ $pwValue | jsonify
-      }};
-      var SESSION_ID = 'moc_unlocked_' + {{ .RelPermalink | jsonify }};
-      var gate = document.getElementById('moc-gate');
-      var content = document.getElementById('moc-content');
-      var input = document.getElementById('moc-pw-input');
-      var btn = document.getElementById('moc-pw-btn');
-      var errEl = document.getElementById('moc-pw-error');
+        var TARGET_HASH = {{ $pwValue | jsonify }};
+        var SESSION_ID = 'moc_unlocked_' + {{ .RelPermalink | jsonify }};
+        var gate = document.getElementById('moc-gate');
+        var contentWrapper = document.getElementById('moc-content-wrapper');
+        var input = document.getElementById('moc-pw-input');
+        var btn = document.getElementById('moc-pw-btn');
+        var errEl = document.getElementById('moc-pw-error');
 
-      function unlock() {
-        gate.style.display = 'none';
-        content.classList.remove('moc-content-locked');
-        content.removeAttribute('aria-hidden');
-        content.removeAttribute('inert');
-        try { sessionStorage.setItem(SESSION_ID, '1'); } catch (e) { }
-      }
-
-      try { if (sessionStorage.getItem(SESSION_ID) === '1') { unlock(); return; } } catch (e) { }
-
-      btn.addEventListener('click', function () {
-        errEl.textContent = '';
-        var attempt = input.value.trim();
-        if (!attempt) {
-          errEl.textContent = 'Please enter the password.';
-          input.focus();
-          return;
+        function unlock() {
+          gate.style.display = 'none';
+          contentWrapper.classList.add('unlocked');
+          try { localStorage.setItem(SESSION_ID, '1'); } catch (e) { }
         }
-        if (attempt === CORRECT) {
-          unlock();
-        } else {
-          errEl.textContent = 'Wrong password. Try again.';
-          input.value = '';
-          input.focus();
-        }
-      });
 
-      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+        try { if (localStorage.getItem(SESSION_ID) === '1') { unlock(); return; } } catch (e) { }
+
+        async function hashPassword(password) {
+          const encoder = new TextEncoder();
+          const data = encoder.encode(password);
+          const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        btn.addEventListener('click', async function () {
+          errEl.textContent = '';
+          var attempt = input.value.trim();
+          if (!attempt) {
+            errEl.textContent = 'Please enter the password.';
+            input.focus();
+            return;
+          }
+          
+          btn.disabled = true;
+          try {
+            var attemptHash = await hashPassword(attempt);
+            if (attemptHash === TARGET_HASH) {
+              unlock();
+            } else {
+              errEl.textContent = 'Wrong password. Try again.';
+              input.value = '';
+              input.focus();
+            }
+          } catch (e) {
+            errEl.textContent = 'Error verifying password.';
+          } finally {
+            btn.disabled = false;
+          }
+        });
+
+        input.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
       }) ();
     </script>
     {{- else -}}
@@ -126,6 +146,26 @@
     margin: 0 auto;
     padding: 1.5rem 1.5rem 4rem;
     color: var(--text-color);
+  }
+  
+  /* ─ Content Preview (Gated) ────────────────────────────── */
+  .moc-content-preview {
+    position: relative;
+    max-height: 400px;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, black 25%, transparent 95%);
+    -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 95%);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .moc-content-preview.unlocked {
+    max-height: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+    overflow: visible;
+    pointer-events: auto;
+    user-select: auto;
   }
 
   /* ─ Header block (centered) ─────────────────────────────── */
