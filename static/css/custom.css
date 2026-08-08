@@ -240,182 +240,134 @@ html[data-theme="dark"] .owner-tooltip::after {
 .moc-gate {
   display: flex;
   justify-content: center;
-  margin-top: -120px; /* Pull up over the faded area */
   margin-bottom: 2rem;
+  margin-top: 2rem;
   position: relative;
   z-index: 10;
 }
 
-.moc-gate-card {
+.elegant-gate {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
-  padding: 2.5rem 2rem;
-  background: var(--card-bg, #fff);
-  border: 1.5px solid var(--border-color, rgba(0, 0, 0, 0.1));
-  border-radius: 16px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+  padding: 3rem 2rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
   text-align: center;
 }
 
-.moc-lock-icon {
-  color: var(--text-color, #222);
-  opacity: 0.65;
-  margin-bottom: 0.1rem;
+.elegant-lock-icon {
+  color: var(--text-color, #2c3e50);
+  margin-bottom: 1.5rem;
 }
 
-.moc-gate-tagline {
-  font-style: italic;
+.elegant-gate-title {
+  font-family: 'Georgia', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text-color, #2c3e50);
+  line-height: 1.35;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.elegant-gate-subtitle {
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  line-height: 1.55;
-  color: var(--text-color-secondary, #444);
-  margin: 0;
-  font-family: var(--body-font);
+  color: var(--text-color-secondary, #4a5568);
+  margin-bottom: 2.5rem;
 }
 
-.moc-gate-form {
+.elegant-gate-subtitle a {
+  color: var(--color-accent-primary, #00e5a0);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-primary, #00e5a0);
+  text-underline-offset: 4px;
+}
+
+.elegant-gate-subtitle a:hover {
+  color: var(--color-accent-hover, #33edb8);
+}
+
+.elegant-gate-form {
   width: 100%;
+  max-width: 380px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  text-align: left;
-  margin-top: 0.25rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
 }
 
-.moc-gate-form label {
-  font-size: 0.875rem;
+.elegant-gate-form label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-color, #222);
+  color: var(--text-color-secondary, #4a5568);
+  margin-bottom: 0.6rem;
 }
 
-.moc-input-row {
+.elegant-input-group {
   display: flex;
-  gap: 0.5rem;
   width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 229, 160, 0.15);
+  border: 1px solid var(--color-accent-primary, #00e5a0);
 }
 
-.moc-input-row input[type="password"] {
+.elegant-input-group input[type="password"] {
   flex: 1;
-  padding: 0.6rem 0.8rem;
-  font-size: 0.9375rem;
-  border: 1.5px solid var(--border-color, rgba(0, 0, 0, 0.18));
-  border-radius: 8px;
-  background: var(--bg-color, #fff);
-  color: var(--text-color, #444);
-  outline: none;
-  transition: border-color 0.14s ease, box-shadow 0.14s ease;
-  appearance: none;
-}
-
-.moc-input-row input[type="password"]:focus {
-  border-color: var(--accent-color, #3273dc);
-  box-shadow: 0 0 0 3px rgba(50, 115, 220, 0.12);
-}
-
-.moc-input-row button {
-  padding: 0.6rem 1rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  background: var(--text-color, #222);
-  color: var(--bg-color, #fff);
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
   border: none;
-  border-radius: 8px;
+  background: var(--input-bg, #ffffff);
+  color: var(--text-color, #2d3748);
+  outline: none;
+}
+
+.elegant-input-group button {
+  padding: 0.85rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  background: var(--color-accent-primary, #00e5a0);
+  color: #1a1b1e;
+  border: none;
   cursor: pointer;
-  white-space: nowrap;
-  transition: opacity 0.14s ease, transform 0.1s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.moc-input-row button:hover {
-  opacity: 0.85;
-}
-
-.moc-input-row button:active {
-  transform: scale(0.97);
+.elegant-input-group button:hover {
+  background: var(--color-accent-hover, #33edb8);
 }
 
 .moc-pw-error {
   font-size: 0.8125rem;
   color: #c0392b;
   min-height: 1.1em;
-  margin: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
 }
 
-.moc-back-link {
-  font-size: 0.875rem;
-  color: var(--accent-color, #3273dc);
-  text-decoration: none;
-  margin-top: 0.25rem;
+.elegant-gate-footer {
+  margin-top: 1rem;
 }
 
-.moc-back-link:hover {
+.elegant-gate-footer a {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--color-accent-primary, #00e5a0);
   text-decoration: underline;
+  text-decoration-color: var(--color-accent-primary, #00e5a0);
+  text-underline-offset: 6px;
+  transition: color 0.2s;
 }
 
-.moc-gate-divider {
-  width: 100%;
-  text-align: center;
-  position: relative;
-  margin: 1.5rem 0;
-  z-index: 1;
-}
-
-.moc-gate-divider::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  height: 1px;
-  background: var(--border-color);
-  z-index: -1;
-}
-
-.moc-gate-divider span {
-  background: var(--card-bg);
-  padding: 0 10px;
-  color: var(--text-color-secondary);
-  font-size: 0.875rem;
-}
-
-.moc-gate-actions {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 0.75rem;
-}
-
-.moc-btn-secondary {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  background: transparent;
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.moc-btn-secondary:hover {
-  background: var(--input-bg);
-  border-color: var(--text-color-secondary);
-}
-
-.moc-btn-tertiary {
-  font-size: 0.85rem;
-  color: var(--text-color-secondary);
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  transition: opacity 0.2s;
-}
-
-.moc-btn-tertiary:hover {
-  opacity: 0.75;
+.elegant-gate-footer a:hover {
+  color: var(--color-accent-hover, #33edb8);
 }
 
 .moc-content-locked {
@@ -425,8 +377,18 @@ html[data-theme="dark"] .owner-tooltip::after {
   user-select: none;
 }
 
-html[data-theme="dark"] .moc-gate-card {
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+html[data-theme="dark"] .elegant-gate-title,
+html[data-theme="dark"] .elegant-lock-icon {
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] .elegant-input-group {
+  border-color: var(--color-accent-primary, #00e5a0);
+}
+
+html[data-theme="dark"] .elegant-input-group input[type="password"] {
+  background: #2d3748;
+  color: #f7fafc;
 }
 
 html[data-theme="dark"] .moc-pw-error {

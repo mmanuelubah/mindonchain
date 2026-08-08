@@ -148,10 +148,10 @@
 </main>
 
 <!-- ================= AVATAR OVERLAY ================= -->
-<div id="avatarOverlay" class="avatar-overlay" role="dialog" aria-modal="true" aria-label="Avatar Image" tabindex="-1">
+<dialog id="avatarOverlay" class="avatar-overlay" aria-label="Avatar Image">
   <button id="closeOverlayBtn" class="avatar-overlay-close" aria-label="Close avatar overlay">×</button>
   <img id="overlayImg" src="" alt="">
-</div>
+</dialog>
 
 <!-- ================= STYLES ================= -->
 <style>
@@ -243,27 +243,21 @@
   }
 
   .avatar-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, .85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: .3s;
-    z-index: 9999;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: auto;
+    overflow: visible;
   }
 
-  .avatar-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
+  .avatar-overlay::backdrop {
+    background: rgba(0, 0, 0, .85);
   }
 
   .avatar-overlay-close {
     position: absolute;
     top: 24px;
-    right: 24px;
+    right: -40px;
     background: transparent;
     border: none;
     color: white;
@@ -272,7 +266,6 @@
     line-height: 1;
     padding: 8px;
     border-radius: 4px;
-    z-index: 10000;
   }
 
   .avatar-overlay-close:focus-visible {
@@ -280,8 +273,8 @@
   }
 
   .avatar-overlay img {
-    max-width: 90%;
-    max-height: 85%;
+    max-width: 90vw;
+    max-height: 85vh;
     border-radius: 12px;
     animation: zoomIn .3s ease;
   }
@@ -623,23 +616,17 @@
   const overlay = document.getElementById("avatarOverlay");
   const overlayImg = document.getElementById("overlayImg");
   const closeBtn = document.getElementById("closeOverlayBtn");
-  let lastFocusedElement;
 
   function openOverlay() {
-    lastFocusedElement = document.activeElement;
-    overlay.classList.add("active");
     overlayImg.src = avatar.querySelector("img").src;
-    overlay.focus();
+    overlay.showModal();
     // Prevent background scroll
     document.body.style.overflow = "hidden";
   }
 
   function closeOverlay() {
-    overlay.classList.remove("active");
+    overlay.close();
     document.body.style.overflow = "";
-    if (lastFocusedElement) {
-      lastFocusedElement.focus();
-    }
   }
 
   avatar.addEventListener("click", openOverlay);
@@ -658,31 +645,6 @@
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay || e.target === closeBtn) {
       closeOverlay();
-    }
-  });
-
-  document.addEventListener("keydown", e => {
-    if (!overlay.classList.contains("active")) return;
-    
-    if (e.key === "Escape") {
-      closeOverlay();
-    } else if (e.key === "Tab") {
-      // Focus trap
-      const focusableEls = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      const firstFocusableEl = focusableEls[0];  
-      const lastFocusableEl = focusableEls[focusableEls.length - 1];
-      
-      if (e.shiftKey) {
-        if (document.activeElement === firstFocusableEl || document.activeElement === overlay) {
-          lastFocusableEl.focus();
-          e.preventDefault();
-        }
-      } else {
-        if (document.activeElement === lastFocusableEl) {
-          firstFocusableEl.focus();
-          e.preventDefault();
-        }
-      }
     }
   });
 </script>

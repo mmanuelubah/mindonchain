@@ -7,7 +7,7 @@
 <meta name="author"
     content="{{ if .Params.author }}{{ .Params.author }}{{ else }}{{ range .Site.Author }}{{ . }} {{ end }}{{ end }}">
 <meta name="description"
-    content="{{ if .IsHome }}{{ .Site.Params.homeSubtitle }}{{ else }}{{ if .Params.Description }}{{ .Params.Description }}{{ else }}{{ .Summary | plainify }}{{ end }}{{ end }}" />
+    content="{{ if .IsHome }}{{ .Site.Params.homeSubtitle }}{{ else }}{{ if .Params.Description }}{{ .Params.Description | htmlEscape }}{{ else }}{{ .Summary | plainify | htmlEscape }}{{ end }}{{ end }}" />
 <meta name="keywords"
     content="{{ .Site.Params.keywords }}{{ if .Params.tags }}{{ range .Params.tags }}, {{ . }}{{ end }}{{ end }}" />
 <meta name="robots" content="noodp" />
@@ -24,14 +24,23 @@
 </title>
 {{ end }}
 
+<!-- FOUC Prevention Script for Theme -->
+<script>
+  (function() {
+    var defaultTheme = {{ .Site.Params.defaultTheme | default "dark" | jsonify }};
+    var theme = localStorage.getItem("theme-storage") || defaultTheme;
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+
 <!-- Fonts loaded via extra-head.html (single combined request) -->
 
 <style>
     /* Body overrides — tokens come from design-system.css */
     body {
-        background-color: var(--bg-color) !important;
-        color: var(--text-color) !important;
-        font-family: var(--body-font) !important;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: var(--body-font);
         font-weight: var(--body-font-weight);
         line-height: var(--line-height-base);
         letter-spacing: var(--body-letter-spacing);

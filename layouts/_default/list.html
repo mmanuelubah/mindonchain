@@ -55,12 +55,7 @@
                             {{ .Date.Format "Jan 02 2006" }}
                         </time>
                         {{ if .Params.tags }}
-                        <span class="post-item-tags">
-                            {{ range .Params.tags }}
-                            <a href="{{ " /tags/" | relURL }}{{ . | urlize }}/" class="tag-pill tag-pill--sm">#{{ .
-                                }}</a>
-                            {{ end }}
-                        </span>
+                        {{ partial "moc-tags.html" (dict "tags" .Params.tags "containerClass" "post-item-tags" "pillClass" "tag-pill tag-pill--sm") }}
                         {{ end }}
                     </div>
                 </li>
