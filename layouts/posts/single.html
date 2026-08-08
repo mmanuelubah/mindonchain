@@ -93,10 +93,11 @@
           </div>
         </div>
 
-        <script>
+        <script id="gating-script" data-hash="{{ $pwValue }}" data-permalink="{{ .RelPermalink }}">
           (function () {
-            var TARGET_HASH = {{ $pwValue | jsonify }};
-            var SESSION_ID = 'moc_unlocked_' + {{ .RelPermalink | jsonify }};
+            var scriptTag = document.getElementById('gating-script');
+            var TARGET_HASH = scriptTag.getAttribute('data-hash');
+            var SESSION_ID = 'moc_unlocked_' + scriptTag.getAttribute('data-permalink');
             var gate = document.getElementById('moc-gate');
             var contentWrapper = document.getElementById('moc-content-wrapper');
             var input = document.getElementById('moc-pw-input');

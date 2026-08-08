@@ -86,13 +86,12 @@
 
   <hr class="section-separator">
 
-  <!-- ================= POSTS ================= -->
   <section class="writing-section">
     <h2 class="section-title mono-header">LATEST POSTS</h2>
 
     <ul class="writing-list">
       {{ $posts := where .Site.RegularPages "Type" "posts" }}
-      {{ range first 6 (sort $posts "Date" "desc") }}
+      {{ range first 1 (sort $posts "Date" "desc") }}
       <li class="writing-item">
         <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
         <small class="post-meta">{{ .Date.Format "Jan 02 2006" }}</small>
@@ -103,46 +102,6 @@
     <div style="margin-top: 1.5rem;">
       <a href="/posts/" class="view-all-link">View all posts →</a>
     </div>
-  </section>
-
-  <hr class="section-separator">
-
-  <!-- ================= BOOKS ================= -->
-  <section class="books-section">
-    <h2 class="section-title mono-header">BOOKS</h2>
-    
-    <ul class="writing-list">
-      {{ $books := where .Site.RegularPages "Type" "books" }}
-      {{ range first 5 (sort $books "Date" "desc") }}
-      <li class="writing-item">
-        <a href="{{ if .Params.link }}{{ .Params.link }}{{ else }}{{ .RelPermalink }}{{ end }}" class="post-link" target="_blank" rel="noopener noreferrer">{{ .Title }}</a>
-        {{ if .Params.author }}<small class="post-meta">{{ .Params.author }}</small>{{ end }}
-      </li>
-      {{ end }}
-    </ul>
-
-    <div style="margin-top: 1.5rem;">
-      <a href="/books/" class="view-all-link">View all books →</a>
-    </div>
-  </section>
-
-  <hr class="section-separator">
-
-  <!-- ================= COLOPHON ================= -->
-  <section class="colophon-section">
-    <h2 class="section-title mono-header">COLOPHON</h2>
-    {{ with .Site.GetPage "/colophon" }}
-    <div class="colophon-content" style="color: var(--text-color-secondary); line-height: 1.6;">
-      {{ .Content }}
-    </div>
-    <div style="margin-top: 1.5rem;">
-      <a href="/colophon/" class="view-all-link">Read full colophon →</a>
-    </div>
-    {{ else }}
-    <div class="colophon-content" style="color: var(--text-color-secondary); line-height: 1.6;">
-      <p>How this site is made and tendered.</p>
-    </div>
-    {{ end }}
   </section>
 
 </main>
@@ -196,7 +155,7 @@
   }
 
   .section-title {
-    font-size: 1.15rem;
+    font-size: 1.6rem;
     line-height: 1.6;
     margin-bottom: 1rem;
     letter-spacing: 0.5px;
@@ -464,8 +423,8 @@
     display: block;
     color: var(--text-color);
     text-decoration: none;
-    font-size: 1.15rem;
-    /* Larger title size to match design */
+    font-size: 0.9rem;
+    /* Smaller title size */
     font-family: var(--body-font), sans-serif;
     margin-bottom: 0.3rem;
     transition: color .15s;
