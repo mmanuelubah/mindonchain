@@ -10,3 +10,13 @@ resources/_gen/
 .obsidian/workspace.json
 .gemini_frame*
 Design Inspo.mp4
+
+# Python & Logs
+.venv/
+*.log
+
+data/
+scripts/
+run_extractions.sh
+Obsidian_Admin_Guide.md
+pin out/

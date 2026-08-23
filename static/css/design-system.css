@@ -9,22 +9,22 @@
 :root,
 html[data-theme="dark"] {
   /* Backgrounds */
-  --color-bg-primary:       #1a1b1e;
-  --color-bg-secondary:     #222326;
-  --color-bg-tertiary:      #2a2b2f;
-  --color-bg-overlay:       rgba(0, 0, 0, 0.85);
+  --color-bg-primary:       #0d1117;     /* Midnight Blue/Black */
+  --color-bg-secondary:     #161b22;     /* Slightly lighter midnight */
+  --color-bg-tertiary:      #21262d;     /* Tertiary midnight */
+  --color-bg-overlay:       rgba(13, 17, 23, 0.85);
 
-  /* Text — WCAG AAA on #1a1b1e */
-  --color-text-primary:     #e4e4e8;     /* 11.3:1 ✅ AAA */
-  --color-text-secondary:   #a1a1ab;     /* 7.1:1  ✅ AAA */
-  --color-text-tertiary:    #76767e;     /* 4.6:1  ✅ AA  */
-  --color-text-inverse:     #1a1b1e;
+  /* Text — WCAG AAA */
+  --color-text-primary:     #c9d1d9;     
+  --color-text-secondary:   #8b949e;     
+  --color-text-tertiary:    #484f58;     
+  --color-text-inverse:     #0d1117;
 
-  /* Accent & Brand */
-  --color-accent-primary:   #00e5a0;
-  --color-accent-hover:     #33edb8;
-  --color-accent-muted:     rgba(0, 229, 160, 0.12);
-  --color-accent-glow:      rgba(0, 229, 160, 0.25);
+  /* Accent & Brand (Emerald) */
+  --color-accent-primary:   #2ea043;
+  --color-accent-hover:     #3fb950;
+  --color-accent-muted:     rgba(46, 160, 67, 0.15);
+  --color-accent-glow:      rgba(46, 160, 67, 0.4);
 
   /* Semantic */
   --color-error:            #ff6b6b;
@@ -33,30 +33,30 @@ html[data-theme="dark"] {
   --color-info:             #64b5f6;
 
   /* Borders & Dividers */
-  --color-border:           rgba(255, 255, 255, 0.08);
-  --color-border-hover:     rgba(255, 255, 255, 0.16);
-  --color-divider:          rgba(255, 255, 255, 0.06);
+  --color-border:           rgba(255, 255, 255, 0.1);
+  --color-border-hover:     rgba(46, 160, 67, 0.4);
+  --color-divider:          rgba(255, 255, 255, 0.05);
 
   /* E-Commerce */
-  --color-stock-in:         #00e5a0;
-  --color-stock-low:        #ffb347;
-  --color-stock-out:        #ff6b6b;
+  --color-stock-in:         #3fb950;
+  --color-stock-low:        #d29922;
+  --color-stock-out:        #f85149;
   --color-price:            #ffffff;
-  --color-price-sale:       #00e5a0;
-  --color-trust-badge:      rgba(0, 229, 160, 0.08);
+  --color-price-sale:       #3fb950;
+  --color-trust-badge:      rgba(46, 160, 67, 0.1);
 
   /* Legacy aliases (backward compat during migration) */
   --bg-color:               var(--color-bg-primary);
   --card-bg:                var(--color-bg-secondary);
   --text-color:             var(--color-text-primary);
   --text-color-secondary:   var(--color-text-secondary);
-  --accent-color:           var(--color-text-primary);
+  --accent-color:           var(--color-accent-primary);
   --border-color:           var(--color-border);
   --pill-bg:                var(--color-bg-tertiary);
-  --pill-hover-bg:          #333336;
+  --pill-hover-bg:          #30363d;
   --input-bg:               var(--color-bg-primary);
-  --tooltip-bg:             #000000;
-  --tooltip-border:         #333333;
+  --tooltip-bg:             var(--color-bg-secondary);
+  --tooltip-border:         var(--color-border);
 }
 
 html[data-theme="light"] {
@@ -252,17 +252,19 @@ html[data-theme="light"] {
 
 /* ── Product Card ────────────────────────────────────────────── */
 .product-card {
-  background: var(--color-bg-secondary);
+  background: rgba(22, 27, 34, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-glow);
-  border-color: var(--color-accent-primary);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--color-accent-glow);
+  border-color: var(--color-accent-hover);
 }
 
 .product-card__link {

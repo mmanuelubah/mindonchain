@@ -113,3 +113,86 @@ Since you write your content in Obsidian, you can use Obsidian's core **Template
 3. Type **Insert template** and press Enter.
 4. Select `Gated Guide Template`.
 5. Obsidian will automatically fill in the front matter, the current date, and set `private: true` so it is instantly protected on your website!
+
+## 4. Setting Up Frontmatter Templates (For ECU Database & Guides)
+
+To standardize your newly merged `alltech/database` section, you should create additional Obsidian templates.
+
+### Template: `ECU Database & Guide`
+
+Use this when manually adding a new ECU pinout, OBD procedure, or immobilizer guide to the Database.
+
+```markdown
+---
+title: "{{title}}"
+date: {{date}}
+draft: false
+tags: ["bench", "eeprom"]
+categories: ["Database", "Immobilizer"]
+brand: "Brand Name"
+model: "Car Model"
+ecu: "ECU Part Number"
+---
+
+## 🚗 Vehicle Details
+| Field | Value |
+|-------|-------|
+| **Brand** | Brand Name |
+| **Model** | Car Model |
+| **Year** | Year Range |
+
+---
+
+## 🔌 ECU Details
+| Field | Value |
+|-------|-------|
+| **Manufacturer** | ECU Maker |
+| **ECU Number** | ECU Part Number |
+
+---
+
+## 🔧 Programming Instructions
+**Method:** `BENCH`
+
+1. First step goes here...
+2. Second step goes here...
+
+---
+
+## 🖼️ Pinout Diagram
+![Pinout Diagram](https://drive.google.com/uc?export=view&id=YOUR_FILE_ID)
+```
+
+## 5. Linking Images and PDFs from Google Drive
+
+To keep the website incredibly fast and save storage, **all images and PDFs will be hosted on your Google Drive**.
+
+### Step 1: Organize Your Google Drive
+
+When you share the folder with the nested car brands, organize it clearly:
+
+- `Locksmith_Database/`
+  - `Toyota/`
+    - `Camry_2016_Pinout.jpg`
+
+### Step 2: Get the Google Drive Link
+
+1. Right-click the image or PDF in Google Drive and select **Share**.
+2. Change the access from "Restricted" to **"Anyone with the link"**.
+3. Click **"Copy Link"**.
+   - The link will look like this: `https://drive.google.com/file/d/1a2b3c4d5e6f7g8h9i/view?usp=sharing`
+
+### Step 3: Convert the Link for Your Website
+
+Hugo needs a direct download link to display the image. You must take the **FILE ID** from the link above (e.g., `1a2b3c4d5e6f7g8h9i`) and format it like this:
+
+**`https://drive.google.com/uc?export=view&id=YOUR_FILE_ID`**
+
+### Step 4: Add it to Your Obsidian Post
+
+- **For an Image inside the text:**
+  `![Image Description](https://drive.google.com/uc?export=view&id=YOUR_FILE_ID)`
+- **For a PDF Download Link:**
+  `[Click Here to Download PDF Manual](https://drive.google.com/uc?export=download&id=YOUR_FILE_ID)`
+- **For a Cover Image (in the Frontmatter):**
+  Just paste the converted link inside the quotes for `images:` or `cover:`.

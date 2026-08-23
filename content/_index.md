@@ -13,7 +13,7 @@ currently_reading:
 work_cards:
   - title: "AllTech Solutions"
     description: "Automotive hardware, ECU modules, programming guides, and diagnostic tools."
-    link: "/alltech/"
+    link: "/alltech/database/"
   - title: "MyEasyAgents"
     description: ""
     link: "https://myeasyagents.com"

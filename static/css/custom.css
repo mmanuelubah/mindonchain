@@ -122,20 +122,26 @@
 }
 
 .post-content h1 {
-  font-size: 1.95rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 800;
   line-height: 1.15;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   margin-bottom: 0.4em;
+  background: linear-gradient(135deg, var(--color-text-primary), var(--color-accent-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
 }
 
 .post-content h2 {
-  font-size: 1.45rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
   line-height: 1.25;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.02em;
   margin-top: 2em;
   margin-bottom: 0.5em;
+  color: var(--color-text-primary);
 }
 
 .post-content h3 {
@@ -333,15 +339,17 @@ html[data-theme="dark"] .owner-tooltip::after {
   padding: 0.85rem 1.5rem;
   font-size: 1rem;
   font-weight: 700;
-  background: var(--color-accent-primary, #00e5a0);
+  background: var(--color-accent-primary);
   color: #1a1b1e;
   border: none;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .elegant-input-group button:hover {
-  background: var(--color-accent-hover, #33edb8);
+  background: var(--color-accent-hover);
+  box-shadow: 0 4px 15px var(--color-accent-glow);
+  transform: translateY(-2px);
 }
 
 .moc-pw-error {
