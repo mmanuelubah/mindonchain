@@ -41,26 +41,34 @@ password_id: "vip_access"
 
 ---
 
-## 2. Using Templates for Normal Posts
+## 2. Publishing Professional Blog Posts
 
-Normal posts live in the `content/posts/` folder. To create a new post, you need standard Hugo front matter at the top of the Markdown file.
+Normal blog posts live in the `content/posts/` folder. To maintain a professional, trustworthy appearance, use the updated frontmatter template for all new articles.
 
-### Standard Public Post Template
+### Standard Blog Post Template
 
 ```markdown
 ---
-title: "Title of Your Post"
+title: "Your Engaging Post Title"
 date: 2026-08-08
+lastmod: 2026-08-08
 draft: false
-tags: ["updates", "news"]
+cover: "https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" # Professional cover image
+categories: ["Tech"] # Use exactly one category (e.g., Tech, Life, Books)
+tags: ["productivity", "learning"]
+featured: false # Set to true to pin it as an "Editor's Pick" on the homepage
 ---
 
-Write your post content here...
+**Write an engaging summary or intro paragraph here...**
+
+<!--more-->
+
+The rest of your post content goes here. The `<!--more-->` tag ensures the excerpt on the homepage looks clean.
 ```
 
 ### Password-Protected Post Template
 
-To make **any** post password-protected, just add `private: true`.
+To make **any** post password-protected (gated), just add `private: true` and specify the `password_id`.
 
 ```markdown
 ---
@@ -69,6 +77,8 @@ date: 2026-08-08
 draft: false
 private: true
 password_id: "default"
+cover: "https://drive.google.com/uc?export=view&id=YOUR_FILE_ID"
+categories: ["Tech"]
 ---
 
 This content will be hidden behind the elegant password gate!

@@ -1,20 +1,32 @@
 ---
-title: "mmanuelubah"
+title: "MindOnChain"
 
 # ── NOW SECTION ──────────────────────────────────────────────
 now_intro: >
-  Building [myeasyagents](https://myeasyagents.com) — a real estate platform that connects people to properties with verified
-  agents and property managers and clear procedures without the hassle of inflated prices.
+  Exploring ideas at the intersection of technology, life, and learning.
   
 currently_reading:
 
+# ── FEATURED SECTION ─────────────────────────────────────────
+featured_posts:
+  - title: "Editor's Pick: The Unexpected poetry of PhD acknowledgements"
+    link: "/posts/weekly-roundup/"
 
-# ── WORK SECTION ─────────────────────────────────────────────
+# ── CATEGORIES ───────────────────────────────────────────────
+categories_list:
+  - name: "Tech"
+    link: "/tags/tech/"
+  - name: "Life"
+    link: "/tags/life/"
+  - name: "Books"
+    link: "/tags/books/"
+
+# ── WORK SECTION ─────────────────────────────────────────────────
 work_cards:
   - title: "AllTech Solutions"
     description: "Automotive hardware, ECU modules, programming guides, and diagnostic tools."
     link: "/alltech/database/"
   - title: "MyEasyAgents"
-    description: ""
+    description: "Building automated agents and intelligent systems."
     link: "https://myeasyagents.com"
 ---

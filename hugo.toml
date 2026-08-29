@@ -1,15 +1,15 @@
 baseURL = "/"
-title = "mmanuelubah"
+title = "MindOnChain"
 languageCode = "en-us"
 theme = "hello-friend-ng"
 pagination.pagerSize = 10
 
 # Theme Parameters
 [params]
-  title = "mmanuelubah"
+  title = "MindOnChain"
   description = "MindOnChain is a blog that explores blockchain analytics, airdrops, and decentralized innovation — written by Emmanuel."
   avatar = "images/Avatar.png"                  # Path: /static/images/Avatar.png
-  enableSharingButtons = true
+  enableSharingButtons = false
   enableGlobalLanguageMenu = true
   enableThemeToggle = true
   customCSS = ["/css/design-system.css", "/css/custom.css"]

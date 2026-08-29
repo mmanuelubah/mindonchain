@@ -4,31 +4,33 @@
   {{ partial "back_button.html" . }}
 
   <header class="alltech-hero">
-    <div class="alltech-hero-overlay"></div>
-    <div class="alltech-hero-content">
+    <div class="alltech-hero-text">
       <h1 class="alltech-title">AllTech Solutions</h1>
       <p class="alltech-subtitle">Automotive hardware, ECU modules, programming guides, and diagnostic tools.</p>
+    </div>
+    <div class="alltech-hero-image">
+      <img src="/images/alltech-hero.jpg" alt="AllTech Solutions">
     </div>
   </header>
 
   <!-- ══ TAB NAVIGATION ═══════════════════════════════════ -->
   <nav class="alltech-tabs" role="tablist" aria-label="AllTech sections">
-    <button class="alltech-tab active" role="tab" aria-selected="true" aria-controls="panel-shop" id="tab-shop">
+    <!-- 
+    <button class="alltech-tab" role="tab" aria-selected="false" aria-controls="panel-shop" id="tab-shop">
       Shop
     </button>
-    <button class="alltech-tab" role="tab" aria-selected="false" aria-controls="panel-guides" id="tab-guides">
-      Guides
+    -->
+    <button class="alltech-tab active" role="tab" aria-selected="true" aria-controls="panel-database" id="tab-database">
+      ECU Database & Guides
     </button>
     <button class="alltech-tab" role="tab" aria-selected="false" aria-controls="panel-concierge" id="tab-concierge">
       Source a Part
     </button>
-    <button class="alltech-tab" role="tab" aria-selected="false" aria-controls="panel-database" id="tab-database">
-      ECU Database
-    </button>
   </nav>
 
-  <!-- ══ SHOP PANEL ═══════════════════════════════════════ -->
-  <section id="panel-shop" class="alltech-panel active" role="tabpanel" aria-labelledby="tab-shop">
+  <!-- ══ SHOP PANEL (Archived) ════════════════════════════ -->
+  <!--
+  <section id="panel-shop" class="alltech-panel" role="tabpanel" aria-labelledby="tab-shop" hidden>
     <div class="shop-grid">
       {{ $shopProducts := where site.RegularPages "Section" "shop" }}
       {{ range sort $shopProducts "Date" "desc" }}
@@ -57,9 +59,19 @@
     <div class="empty-state"><p>No products listed yet. Check back soon.</p></div>
     {{ end }}
   </section>
+  -->
 
-  <!-- ══ GUIDES PANEL ═════════════════════════════════════ -->
-  <section id="panel-guides" class="alltech-panel" role="tabpanel" aria-labelledby="tab-guides" hidden>
+  <!-- ══ DATABASE & GUIDES PANEL ══════════════════════════ -->
+  <section id="panel-database" class="alltech-panel active" role="tabpanel" aria-labelledby="tab-database">
+    <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 10px; padding: 3rem 1.5rem; text-align: center; margin-bottom: 2rem;">
+      <h3 style="margin-top: 0; font-family: var(--pixel-font); font-size: 2rem; color: var(--color-accent-primary);">The Locksmith ECU Terminal</h3>
+      <p style="margin-bottom: 2rem; color: var(--text-color-secondary); font-size: 1.1rem;">Access the interactive database for ECU pinouts, EEPROM reading guides, and immobilizer bypass procedures.</p>
+      <a href="/alltech/database/" class="button" style="display: inline-block; padding: 1rem 2rem; background: var(--color-accent-primary); color: var(--color-bg-primary); text-decoration: none; font-weight: bold; border-radius: 8px; font-size: 1.1rem; transition: transform 0.2s;">Access Terminal →</a>
+    </div>
+
+    <hr class="section-separator" style="border: none; border-top: 1px solid var(--color-divider); margin: 3rem 0;">
+    
+    <h3 style="font-family: var(--pixel-font); font-size: 1.5rem; margin-bottom: 1.5rem;">Programming Guides</h3>
     <!-- Difficulty filters -->
     <div class="guide-filters" role="group" aria-label="Filter by difficulty">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -154,15 +166,6 @@
     {{ end }}
   </section>
 
-  <!-- ══ DATABASE PANEL ═══════════════════════════════════ -->
-  <section id="panel-database" class="alltech-panel" role="tabpanel" aria-labelledby="tab-database" hidden>
-    <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 10px; padding: 3rem 1.5rem; text-align: center; margin-bottom: 2rem;">
-      <h3 style="margin-top: 0; font-family: var(--pixel-font); font-size: 2rem; color: var(--color-accent-primary);">The Locksmith ECU Terminal</h3>
-      <p style="margin-bottom: 2rem; color: var(--text-color-secondary); font-size: 1.1rem;">Access the interactive database for ECU pinouts, EEPROM reading guides, and immobilizer bypass procedures.</p>
-      <a href="/alltech/database/" class="button" style="display: inline-block; padding: 1rem 2rem; background: var(--color-accent-primary); color: var(--color-bg-primary); text-decoration: none; font-weight: bold; border-radius: 8px; font-size: 1.1rem; transition: transform 0.2s;">Access Terminal →</a>
-    </div>
-  </section>
-
 </main>
 
 <!-- ══ STYLES ══════════════════════════════════════════════ -->
@@ -175,49 +178,63 @@
   }
 
   .alltech-hero {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-    background-image: url('/images/alltech-hero.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     align-items: center;
-    padding: 4rem 2rem;
-    color: #fff;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   }
 
-  .alltech-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(26, 27, 30, 0.95) 10%, rgba(26, 27, 30, 0.4) 100%);
-    z-index: 1;
+  .alltech-hero-text {
+    flex: 1;
+    padding: 3rem 2.5rem;
   }
 
-  .alltech-hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 600px;
+  .alltech-hero-image {
+    flex: 1;
+    min-height: 300px;
+  }
+
+  .alltech-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .alltech-title {
     font-family: var(--pixel-font);
     font-size: 2.5rem;
     letter-spacing: 0.04em;
-    margin: 0 0 0.5rem;
-    color: #fff;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    margin: 0 0 1rem;
+    color: var(--accent-color);
   }
 
   .alltech-subtitle {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1.1rem;
+    color: var(--text-color-secondary);
+    font-size: 1.15rem;
     margin: 0;
     line-height: 1.6;
-    text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+  }
+
+  @media (max-width: 768px) {
+    .alltech-hero {
+      flex-direction: column-reverse;
+    }
+    .alltech-hero-image {
+      width: 100%;
+      min-height: 200px;
+    }
+    .alltech-hero-text {
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .alltech-title {
+      font-size: 2rem;
+    }
   }
 
   /* ─ Tab navigation ─────────────────────────────────────── */
@@ -473,242 +490,6 @@
     text-align: center;
     padding: 3rem 1rem;
     color: var(--text-color-secondary);
-  }
-
-  /* ─ Vault drill-down ──────────────────────────────────── */
-  .vault-intro {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .vault-intro-title {
-    margin-top: 0;
-    font-family: var(--pixel-font);
-  }
-
-  .vault-intro-desc {
-    margin-bottom: 0.5rem;
-    color: var(--text-color-secondary);
-  }
-
-  .vault-intro-note {
-    margin-bottom: 0;
-    font-size: 0.9rem;
-    color: var(--text-color-secondary);
-  }
-
-  .vault-intro-note a {
-    color: var(--color-accent-primary);
-    text-decoration: none;
-  }
-
-  .vault-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .vault-crumb {
-    background: none;
-    border: none;
-    color: var(--text-color-secondary);
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    transition: color 0.15s, background 0.15s;
-    font-family: var(--body-font);
-  }
-
-  .vault-crumb:hover {
-    color: var(--color-accent-primary);
-    background: var(--color-accent-muted);
-  }
-
-  .vault-crumb.active {
-    color: var(--text-color);
-    font-weight: 600;
-    cursor: default;
-  }
-
-  .vault-crumb-sep {
-    color: var(--text-color-secondary);
-    font-size: 0.8rem;
-    opacity: 0.5;
-    user-select: none;
-  }
-
-  .vault-brand-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
-  }
-
-  .vault-brand-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1.5rem 1rem;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    text-align: center;
-    color: inherit;
-    font-family: var(--body-font);
-  }
-
-  .vault-brand-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 16px var(--color-accent-glow);
-    border-color: var(--color-accent-primary);
-  }
-
-  .vault-brand-icon {
-    font-size: 2rem;
-  }
-
-  .vault-brand-name {
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-
-  .vault-brand-count {
-    font-size: 0.8rem;
-    color: var(--text-color-secondary);
-  }
-
-  .vault-model-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .vault-model-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.25rem;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: border-color 0.15s, transform 0.15s;
-    color: inherit;
-    font-family: var(--body-font);
-  }
-
-  .vault-model-card:hover {
-    border-color: var(--color-accent-primary);
-    transform: translateX(4px);
-  }
-
-  .vault-model-name {
-    font-weight: 600;
-    font-size: 1.05rem;
-  }
-
-  .vault-model-count {
-    font-size: 0.85rem;
-    color: var(--text-color-secondary);
-  }
-
-  .vault-model-arrow {
-    color: var(--color-accent-primary);
-    font-size: 1.1rem;
-  }
-
-  .vault-doc-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .vault-doc-card {
-    display: block;
-    padding: 1.25rem 1.5rem;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.15s, transform 0.15s;
-  }
-
-  .vault-doc-card:hover {
-    border-color: var(--color-accent-primary);
-    transform: translateY(-2px);
-  }
-
-  .vault-doc-meta {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .vault-doc-badge {
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .vault-doc-badge.method-bench {
-    background: rgba(255, 179, 71, 0.12);
-    color: var(--color-warning);
-  }
-
-  .vault-doc-badge.method-obd {
-    background: rgba(0, 229, 160, 0.12);
-    color: var(--color-accent-primary);
-  }
-
-  .vault-doc-badge.locked {
-    background: var(--color-bg-tertiary);
-    color: var(--text-color-secondary);
-  }
-
-  .vault-doc-title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin: 0 0 0.3rem;
-    line-height: 1.4;
-  }
-
-  .vault-doc-detail {
-    font-size: 0.85rem;
-    color: var(--text-color-secondary);
-    margin: 0 0 0.2rem;
-  }
-
-  .vault-doc-footer {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    color: var(--color-accent-primary);
-  }
-
-  @media (max-width: 600px) {
-    .alltech-title {
-      font-size: 1.5rem;
-    }
-
-    .shop-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .vault-brand-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 </style>
 

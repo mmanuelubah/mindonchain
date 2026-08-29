@@ -1,71 +1,68 @@
 {{ define "main" }}
 <main class="list-page" id="main-content">
 
+    <header class="list-header">
+        <h1 class="list-title">{{ .Title }}</h1>
+        {{ if .Content }}
+        <div class="list-content">{{ .Content }}</div>
+        {{ end }}
+    </header>
+
     <!-- ══ SEARCH BAR ══════════════════════════════════════ -->
     <div class="search-wrap">
-        <input id="post-search" type="text" placeholder="Search by title" autocomplete="off" spellcheck="false"
+        <input id="post-search" type="text" placeholder="Search articles..." autocomplete="off" spellcheck="false"
             aria-label="Search posts by title">
     </div>
 
-    <!-- ══ TAG CLOUD ═══════════════════════════════════════ -->
-    {{ $allTags := slice }}
-    {{ range .Site.RegularPages }}
-    {{ range .Params.tags }}
-    {{ $allTags = $allTags | append . }}
-    {{ end }}
-    {{ end }}
-    {{ $uniqueTags := $allTags | uniq | sort }}
-
-    {{ if $uniqueTags }}
-    <div class="tag-cloud" role="navigation" aria-label="Browse by tag">
-        {{ range $uniqueTags }}
-        <a href="{{ " /tags/" | relURL }}{{ . | urlize }}/" class="tag-pill">#{{ . }}</a>
-        {{ end }}
+    <!-- ══ CATEGORY FILTERS ════════════════════════════════ -->
+    <div class="category-filters">
+      <a href="/posts/" class="filter-btn {{ if eq .RelPermalink "/posts/" }}active{{ end }}">All</a>
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+      <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}" class="filter-btn {{ if eq $.Title $name }}active{{ end }}">{{ $name }}</a>
+      {{ end }}
     </div>
-    {{ end }}
 
-    <!-- ══ POSTS GROUPED BY YEAR ═══════════════════════════ -->
-    <div id="post-list">
-        {{ range (.Pages.GroupByDate "2006") }}
-        <div class="year-group" data-year="{{ .Key }}">
-            <h2 class="year-heading mono-header">{{ .Key }}</h2>
-            <hr class="year-rule">
-
-            <ul class="posts-in-year">
-                {{ range .Pages }}
-                <li class="post-item" data-title="{{ .Title | lower }}">
-                    <a href="{{ .RelPermalink }}" class="post-item-link">
-                        {{ .Title }}
-                        {{ if .Params.featured }}<span class="featured-dot" title="Featured">✦</span>{{ end }}
-                        {{- if .Params.private -}}
-                        <span class="moc-lock-badge">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="12"
-                                aria-hidden="true" focusable="false" fill="none">
-                                <rect x="1" y="5.5" width="10" height="8" rx="2" stroke="currentColor"
-                                    stroke-width="1.5" />
-                                <path d="M3.5 5.5V4a2.5 2.5 0 0 1 5 0v1.5" stroke="currentColor" stroke-width="1.5"
-                                    stroke-linecap="round" />
-                            </svg>
-                            Private
-                        </span>
-                        {{- end -}}
-                    </a>
-                    <div class="post-item-meta">
-                        <time class="post-item-date" datetime="{{ .Date.Format " 2006-01-02" }}">
-                            {{ .Date.Format "Jan 02 2006" }}
-                        </time>
-                        {{ if .Params.tags }}
-                        {{ partial "moc-tags.html" (dict "tags" .Params.tags "containerClass" "post-item-tags" "pillClass" "tag-pill tag-pill--sm") }}
-                        {{ end }}
-                    </div>
-                </li>
+    <!-- ══ POSTS GRID ══════════════════════════════════════ -->
+    <div id="post-list" class="post-grid">
+        {{ range .Pages }}
+        <article class="post-card post-item" data-title="{{ .Title | lower }}">
+            {{ if .Params.cover }}
+            <a href="{{ .RelPermalink }}" class="post-card__image">
+              <img src="{{ .Params.cover | absURL }}" alt="{{ .Title }}" loading="lazy">
+            </a>
+            {{ end }}
+            <div class="post-card__content">
+              <div class="post-card__meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02, 2006" }}</time>
+                <span class="meta-sep">·</span>
+                <span>{{ .ReadingTime }} min read</span>
+                {{- if .Params.private -}}
+                <span class="moc-lock-badge" style="margin-left:auto;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="12"
+                        aria-hidden="true" focusable="false" fill="none">
+                        <rect x="1" y="5.5" width="10" height="8" rx="2" stroke="currentColor" stroke-width="1.5" />
+                        <path d="M3.5 5.5V4a2.5 2.5 0 0 1 5 0v1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                    Private
+                </span>
+                {{- end -}}
+              </div>
+              <h3 class="post-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              <p class="post-card__excerpt">{{ .Summary | plainify | truncate 100 }}</p>
+              
+              {{ if .Params.tags }}
+              <div class="post-card__tags">
+                {{ range first 3 .Params.tags }}
+                <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="tag-pill tag-pill--sm">#{{ . }}</a>
                 {{ end }}
-            </ul>
-        </div>
+              </div>
+              {{ end }}
+            </div>
+        </article>
         {{ end }}
 
         <!-- empty-state shown by JS when nothing matches -->
-        <p id="no-results" class="no-results" hidden>No posts match your search.</p>
+        <p id="no-results" class="no-results" hidden style="grid-column: 1 / -1; text-align: center; padding: 2rem;">No articles match your search.</p>
     </div>
 
 </main>
@@ -75,24 +72,29 @@
     /* ─ Layout ─────────────────────────────────────────────── */
     .list-page {
         font-family: var(--body-font);
-        font-size: 15px;
-        font-weight: var(--body-font-weight);
-        line-height: var(--line-height-base);
-        max-width: 720px;
+        max-width: 900px;
         margin: auto;
         padding: 2rem 1.5rem 4rem;
         color: var(--text-color);
     }
 
-    /* ─ Mono header (year) ──────────────────────────────────── */
-    .mono-header {
-        font-family: 'VT323', monospace, monospace;
-        letter-spacing: 0.08em;
+    .list-header {
+        margin-bottom: var(--space-8);
+        text-align: center;
+    }
+
+    .list-title {
+        font-family: var(--font-display);
+        font-size: calc(var(--text-3xl) * var(--vt323-scale));
+        margin: 0 0 var(--space-4);
     }
 
     /* ─ Search bar ──────────────────────────────────────────── */
     .search-wrap {
-        margin-bottom: 1.4rem;
+        margin-bottom: var(--space-6);
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #post-search {
@@ -100,154 +102,158 @@
         box-sizing: border-box;
         background: var(--input-bg);
         color: var(--text-color);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: .65rem 1rem;
-        font-size: .9rem;
-        font-family: var(--body-font), monospace;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-full);
+        padding: var(--space-3) var(--space-5);
+        font-size: var(--text-md);
+        font-family: var(--body-font);
         outline: none;
         transition: border-color .2s, box-shadow .2s;
     }
 
-    #post-search::placeholder {
-        color: var(--text-color-secondary);
-    }
-
     #post-search:focus {
-        border-color: var(--accent-color);
+        border-color: var(--color-accent-primary);
         box-shadow: 0 0 0 3px rgba(0, 255, 204, .08);
     }
 
-    /* ─ Tag cloud ───────────────────────────────────────────── */
-    .tag-cloud {
-        display: flex;
-        flex-wrap: wrap;
-        gap: .4rem .5rem;
-        margin-bottom: 2.5rem;
+    /* ─ Category Filters ────────────────────────────────────── */
+    .category-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
     }
 
-    /* ─ Tag pill (shared by cloud + post-level tags) ─────────── */
+    .filter-btn {
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      background: transparent;
+      color: var(--color-text-secondary);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--color-text-secondary);
+      color: var(--color-text-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--color-accent-primary);
+      color: var(--color-bg-primary);
+      border-color: var(--color-accent-primary);
+    }
+
+    /* ─ Post Grid (Reused from Index) ───────────────────────── */
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .post-card {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-border-hover);
+    }
+
+    .post-card__image {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+
+    .post-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .post-card:hover .post-card__image img {
+      transform: scale(1.05);
+    }
+
+    .post-card__content {
+      padding: var(--space-5);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-card__meta {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .post-card__title {
+      font-size: var(--text-lg);
+      line-height: var(--leading-snug);
+      margin: 0 0 var(--space-3);
+    }
+
+    .post-card__title a {
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+
+    .post-card__title a:hover {
+      color: var(--color-accent-primary);
+    }
+
+    .post-card__excerpt {
+      color: var(--color-text-secondary);
+      font-size: var(--text-sm);
+      margin: 0 0 var(--space-4);
+      line-height: var(--leading-relaxed);
+      flex: 1;
+    }
+
+    .post-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: auto;
+    }
+
     .tag-pill {
-        display: inline-block;
-        background: var(--pill-bg);
-        color: var(--text-color-secondary);
-        border-radius: 20px;
-        padding: .22rem .7rem;
-        font-family: 'VT323', monospace;
-        font-size: 1rem;
-        text-decoration: none;
-        line-height: 1.4;
-        transition: background .15s, color .15s;
-        white-space: nowrap;
+      display: inline-block;
+      background: var(--color-bg-tertiary);
+      color: var(--color-text-secondary);
+      border-radius: var(--radius-full);
+      font-family: var(--font-display);
+      text-decoration: none;
+      line-height: 1.4;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
     }
 
     .tag-pill:hover {
-        background: var(--pill-hover-bg);
-        color: var(--accent-color);
+      background: var(--color-border);
+      color: var(--color-accent-primary);
     }
 
-    /* Smaller variant used inline on each post */
     .tag-pill--sm {
-        font-size: .85rem;
-        padding: .12rem .55rem;
-    }
-
-    /* ─ Year group ──────────────────────────────────────────── */
-    .year-group {
-        margin-bottom: 2.8rem;
-    }
-
-    .year-heading {
-        font-size: 1rem;
-        color: var(--text-color-secondary);
-        margin-bottom: .4rem;
-        margin-top: 0;
-        font-weight: normal;
-    }
-
-    .year-rule {
-        border: none;
-        border-top: 1px solid var(--border-color);
-        margin: 0 0 1rem;
-    }
-
-    /* ─ Post list ───────────────────────────────────────────── */
-    .posts-in-year {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .post-item {
-        padding: .8rem 0;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .post-item:last-child {
-        border-bottom: none;
-    }
-
-    .post-item-link {
-        display: inline;
-        color: var(--text-color);
-        text-decoration: none;
-        font-size: .97rem;
-        font-family: var(--body-font), sans-serif;
-        line-height: 1.4;
-        transition: color .15s;
-    }
-
-    .post-item-link:hover {
-        color: var(--accent-color);
-    }
-
-    .featured-dot {
-        color: var(--accent-color);
-        font-size: .7rem;
-        margin-left: .25rem;
-        vertical-align: middle;
-    }
-
-    /* date + tags row */
-    .post-item-meta {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: .3rem .5rem;
-        margin-top: .3rem;
-    }
-
-    .post-item-date {
-        font-family: 'VT323', monospace;
-        font-size: .9rem;
-        color: var(--text-color-secondary);
-        white-space: nowrap;
-    }
-
-    .post-item-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: .25rem .35rem;
-    }
-
-    /* ─ No results ──────────────────────────────────────────── */
-    .no-results {
-        color: var(--text-color-secondary);
-        font-size: .9rem;
-        margin-top: 1rem;
-    }
-
-    /* ─ Mobile ──────────────────────────────────────────────── */
-    @media (max-width: 600px) {
-        #post-search {
-            font-size: .85rem;
-        }
-
-        .post-item-meta {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: .2rem;
-        }
+      font-size: calc(var(--text-sm) * var(--vt323-scale));
+      padding: var(--space-1) var(--space-2);
     }
 </style>
 
@@ -257,7 +263,8 @@
         const input = document.getElementById('post-search');
         const items = document.querySelectorAll('.post-item');
         const noRes = document.getElementById('no-results');
-        const groups = document.querySelectorAll('.year-group');
+
+        if (!input) return;
 
         input.addEventListener('input', function () {
             const q = this.value.trim().toLowerCase();
@@ -268,14 +275,6 @@
                 const show = !q || title.includes(q);
                 item.style.display = show ? '' : 'none';
                 if (show) visible++;
-            });
-
-            // Hide year headings that have no visible posts
-            groups.forEach(function (group) {
-                const hasVisible = Array.from(
-                    group.querySelectorAll('.post-item')
-                ).some(function (i) { return i.style.display !== 'none'; });
-                group.style.display = hasVisible ? '' : 'none';
             });
 
             noRes.hidden = visible > 0;

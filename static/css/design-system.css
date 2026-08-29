@@ -567,3 +567,146 @@ html[data-theme="light"] {
   font-size: 0.8rem;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   COMPONENT TOKENS — Blog Trust Features
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Reading Progress Bar ────────────────────────────────────── */
+.reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 9999;
+}
+
+.reading-progress-bar {
+  height: 100%;
+  background: var(--color-accent-primary);
+  width: 0%;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 8px var(--color-accent-glow);
+}
+
+/* ── Table of Contents ───────────────────────────────────────── */
+.post-toc {
+  position: sticky;
+  top: 2rem;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
+.post-toc__title {
+  font-family: var(--font-display);
+  font-size: calc(var(--text-lg) * var(--vt323-scale));
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-primary);
+}
+
+.post-toc__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.post-toc__list li {
+  margin-bottom: var(--space-2);
+}
+
+.post-toc__list a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.post-toc__list a:hover {
+  color: var(--color-accent-primary);
+}
+
+/* ── Author Bio Card ─────────────────────────────────────────── */
+.author-card {
+  display: flex;
+  gap: var(--space-5);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-8);
+}
+
+.author-card__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+}
+
+.author-card__content {
+  flex: 1;
+}
+
+.author-card__name {
+  font-family: var(--font-display);
+  font-size: calc(var(--text-xl) * var(--vt323-scale));
+  margin: 0 0 var(--space-1);
+  color: var(--color-text-primary);
+}
+
+.author-card__bio {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0 0 var(--space-3);
+}
+
+.author-card__social {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.author-card__social-link {
+  color: var(--color-text-tertiary);
+  transition: color 0.2s;
+}
+
+.author-card__social-link:hover {
+  color: var(--color-accent-primary);
+}
+
+/* ── Share Buttons ───────────────────────────────────────────── */
+.share-buttons {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.share-btn:hover {
+  background: var(--color-accent-primary);
+  color: var(--color-bg-primary);
+  border-color: var(--color-accent-primary);
+  transform: translateY(-2px);
+}

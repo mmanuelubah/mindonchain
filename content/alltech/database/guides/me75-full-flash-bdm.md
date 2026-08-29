@@ -63,4 +63,4 @@ Select **MPC555 > Write Full Flash**. Upload your modified binary. The write pro
 
 Perform a **Read** again after writing and compare checksums. They must match exactly. Reassemble the ECU and install in the vehicle.
 
-> ⚠️ **Critical**: A failed BDM write can brick the ECU. Always maintain a known-good backup binary. If the write fails mid-process, do NOT power cycle — attempt the write again immediately.
+> **Critical**: A failed BDM write can brick the ECU. Always maintain a known-good backup binary. If the write fails mid-process, do NOT power cycle — attempt the write again immediately.
