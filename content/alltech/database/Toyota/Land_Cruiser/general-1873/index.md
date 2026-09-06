@@ -9,7 +9,7 @@ model: "Land Cruiser"
 ecu: "Unknown"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -28,7 +28,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -41,25 +41,25 @@ ecu: "Unknown"
 3. Use VVDI Prog to read Toyota Land Cruiser data.
 4. Load the eeprom dump file into VVDI2 transponder programmer software to make dealer key.
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - Connect VVDI Prog and chip with computer.
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** Always check wiring diagram when connecting VVDI Prog.
 >
 
 ---
 
-## 📖 Source
+## Source
 
 - **Page:** 1
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

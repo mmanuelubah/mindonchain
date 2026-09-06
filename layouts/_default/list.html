@@ -22,47 +22,45 @@
       {{ end }}
     </div>
 
-    <!-- ══ POSTS GRID ══════════════════════════════════════ -->
-    <div id="post-list" class="post-grid">
-        {{ range .Pages }}
-        <article class="post-card post-item" data-title="{{ .Title | lower }}">
-            {{ if .Params.cover }}
-            <a href="{{ .RelPermalink }}" class="post-card__image">
-              <img src="{{ .Params.cover | absURL }}" alt="{{ .Title }}" loading="lazy">
-            </a>
-            {{ end }}
-            <div class="post-card__content">
-              <div class="post-card__meta">
-                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02, 2006" }}</time>
-                <span class="meta-sep">·</span>
-                <span>{{ .ReadingTime }} min read</span>
+    <!-- ══ POSTS LIST ══════════════════════════════════════ -->
+    <div id="post-list" class="compact-post-list">
+        {{ range .Pages.GroupByDate "2006" }}
+        <div class="list-year-group">
+          <h2 class="list-year-heading">{{ .Key }}</h2>
+          {{ range .Pages }}
+          <article class="compact-post-item post-item" data-title="{{ .Title | lower }}">
+              <div class="compact-post-meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" }}</time>
                 {{- if .Params.private -}}
-                <span class="moc-lock-badge" style="margin-left:auto;">
+                <span class="moc-lock-badge" title="Private post">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="12"
                         aria-hidden="true" focusable="false" fill="none">
                         <rect x="1" y="5.5" width="10" height="8" rx="2" stroke="currentColor" stroke-width="1.5" />
                         <path d="M3.5 5.5V4a2.5 2.5 0 0 1 5 0v1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                     </svg>
-                    Private
                 </span>
                 {{- end -}}
               </div>
-              <h3 class="post-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-              <p class="post-card__excerpt">{{ .Summary | plainify | truncate 100 }}</p>
               
-              {{ if .Params.tags }}
-              <div class="post-card__tags">
-                {{ range first 3 .Params.tags }}
-                <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="tag-pill tag-pill--sm">#{{ . }}</a>
+              <div class="compact-post-content">
+                <h3 class="compact-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                <p class="compact-post-excerpt">{{ .Summary | plainify | truncate 100 }}</p>
+                
+                {{ if .Params.tags }}
+                <div class="compact-post-tags">
+                  {{ range first 4 .Params.tags }}
+                  <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="tag-pill tag-pill--sm">#{{ . }}</a>
+                  {{ end }}
+                </div>
                 {{ end }}
               </div>
-              {{ end }}
-            </div>
-        </article>
+          </article>
+          {{ end }}
+        </div>
         {{ end }}
 
         <!-- empty-state shown by JS when nothing matches -->
-        <p id="no-results" class="no-results" hidden style="grid-column: 1 / -1; text-align: center; padding: 2rem;">No articles match your search.</p>
+        <p id="no-results" class="no-results" hidden style="text-align: center; padding: 2rem;">No articles match your search.</p>
     </div>
 
 </main>
@@ -149,89 +147,101 @@
       border-color: var(--color-accent-primary);
     }
 
-    /* ─ Post Grid (Reused from Index) ───────────────────────── */
-    .post-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: var(--space-6);
-    }
-
-    .post-card {
-      background: var(--color-bg-secondary);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
+    /* ─ Compact Post List ───────────────────────────────────── */
+    .compact-post-list {
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s, box-shadow 0.2s;
+      gap: 0;
     }
 
-    .post-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--color-border-hover);
+    .list-year-group {
+      margin-bottom: var(--space-8);
     }
 
-    .post-card__image {
-      aspect-ratio: 16/9;
-      overflow: hidden;
+    .list-year-heading {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      color: var(--color-text-primary);
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: var(--space-2);
+      margin: 0 0 var(--space-4) 0;
     }
 
-    .post-card__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
+    .compact-post-item {
+      display: flex;
+      flex-direction: row;
+      gap: var(--space-4);
+      padding: var(--space-4) 0;
+      border-bottom: 1px dashed var(--color-divider);
+      transition: border-color 0.2s;
     }
 
-    .post-card:hover .post-card__image img {
-      transform: scale(1.05);
+    .compact-post-item:last-child {
+      border-bottom: none;
     }
 
-    .post-card__content {
-      padding: var(--space-5);
+    .compact-post-item:hover {
+      border-color: var(--color-accent-primary);
+    }
+
+    .compact-post-meta {
+      flex: 0 0 70px;
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-1);
+      padding-top: 4px;
+    }
+
+    .compact-post-content {
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
-    .post-card__meta {
-      font-size: var(--text-sm);
-      color: var(--color-text-secondary);
-      margin-bottom: var(--space-2);
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-    }
-
-    .post-card__title {
+    .compact-post-title {
       font-size: var(--text-lg);
       line-height: var(--leading-snug);
-      margin: 0 0 var(--space-3);
+      margin: 0 0 var(--space-1);
     }
 
-    .post-card__title a {
+    .compact-post-title a {
       color: var(--color-text-primary);
       text-decoration: none;
+      transition: color 0.15s;
     }
 
-    .post-card__title a:hover {
+    .compact-post-title a:hover {
       color: var(--color-accent-primary);
     }
 
-    .post-card__excerpt {
+    .compact-post-excerpt {
       color: var(--color-text-secondary);
-      font-size: var(--text-sm);
+      font-size: var(--text-md);
       margin: 0 0 var(--space-4);
       line-height: var(--leading-relaxed);
-      flex: 1;
     }
 
-    .post-card__tags {
+    .compact-post-tags {
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-2);
-      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      .compact-post-item {
+        flex-direction: column;
+        gap: var(--space-2);
+        padding: var(--space-5) 0;
+      }
+      .compact-post-meta {
+        flex: auto;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 0;
+      }
     }
 
     .tag-pill {
@@ -262,6 +272,7 @@
     (function () {
         const input = document.getElementById('post-search');
         const items = document.querySelectorAll('.post-item');
+        const groups = document.querySelectorAll('.list-year-group');
         const noRes = document.getElementById('no-results');
 
         if (!input) return;
@@ -275,6 +286,11 @@
                 const show = !q || title.includes(q);
                 item.style.display = show ? '' : 'none';
                 if (show) visible++;
+            });
+
+            groups.forEach(function (group) {
+                const hasVisible = Array.from(group.querySelectorAll('.post-item')).some(el => el.style.display !== 'none');
+                group.style.display = hasVisible ? '' : 'none';
             });
 
             noRes.hidden = visible > 0;

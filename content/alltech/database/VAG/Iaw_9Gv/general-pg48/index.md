@@ -9,7 +9,7 @@ model: "Iaw 9Gv"
 ecu: "Unknown"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -28,7 +28,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -42,7 +42,7 @@ ecu: "Unknown"
 4. Connect CANL to pin A-37
 5. Operate I/O TERMINAL in bench mode via CAN1 using adapter BEMODEADP1
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - Connect +12V to pin A-15 and pin A-33
 - Connect GND to pin A-54
@@ -51,20 +51,20 @@ ecu: "Unknown"
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** For bench mode, special adapter BEMODEADP1 is required.
 >
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `50 PCM PINES CAN.pdf`
 - **Page:** 48
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

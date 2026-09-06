@@ -9,7 +9,7 @@ model: "Suburban"
 ecu: "95040"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "95040"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -29,7 +29,7 @@ ecu: "95040"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -42,13 +42,13 @@ ecu: "95040"
 3. Read the 95040 EEPROM chip in-circuit using the AR32 device reader.
 4. Use Tango plus software to process the EEPROM BIN file and write/convert the transponder key (Phillips 46 / 7936).
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - Identify the target device chip (95040 8-pin SOIC) on the antenna board.
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** This procedure applies primarily to Circle Plus vehicles with column-mounted ignitions, not typically in-dash ignitions.
 >
@@ -57,13 +57,13 @@ ecu: "95040"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `advanced automotive immobilizer programming book 2017.pdf`
 - **Page:** 52
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

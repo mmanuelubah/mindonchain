@@ -28,7 +28,7 @@
 
       {{ if .Params.Cover }}
         <figure class="post-cover">
-          <img src="{{ .Params.Cover | absURL }}" alt="{{ .Title }}" />
+          <img src="{{ .Params.Cover | absURL }}" alt="{{ .Title }}" loading="lazy" decoding="async" />
           
           {{ if .Params.CoverCaption }}
             <figcaption class="center">{{ .Params.CoverCaption | markdownify }}</figcaption>
@@ -47,7 +47,7 @@
 
       {{ if .Params.Audio }}
         <div class="post-audio">
-          <audio controls>
+          <audio controls preload="metadata">
             <source src="{{ .Params.Audio }}">
           </audio>
         </div>
@@ -163,7 +163,7 @@
         {{- else -}}
         {{ .Content }}
         {{- end -}}
-      </div>
+      
 
       <!-- Share Buttons -->
       <div class="share-buttons">
@@ -180,7 +180,7 @@
 
       <!-- Author Bio Card -->
       <div class="author-card">
-        <img src="{{ .Site.Params.avatar | absURL }}" alt="{{ .Site.Params.ownerNameDisplay | default "Emmanuel" }}" class="author-card__avatar">
+        <img src="{{ .Site.Params.avatar | absURL }}" alt="{{ .Site.Params.ownerNameDisplay | default "Emmanuel" }}" class="author-card__avatar" loading="lazy" decoding="async">
         <div class="author-card__content">
           <h3 class="author-card__name">{{ .Site.Params.ownerNameDisplay | default "Emmanuel" }}</h3>
           <p class="author-card__bio">Software engineer and technology analyst. I provide technical resources on automotive hardware, ECU modules, and insights into system architecture and intelligent agents.</p>
@@ -202,6 +202,7 @@
             {{ end }}
           </div>
         </div>
+      </div>
       </div>
 
     </article>

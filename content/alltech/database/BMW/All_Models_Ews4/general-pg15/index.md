@@ -9,7 +9,7 @@ model: "All Models (Ews4)"
 ecu: "Unknown"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -29,7 +29,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -45,7 +45,7 @@ ecu: "Unknown"
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** This system does not require the immobilizer module device to be rewritten.
 >
@@ -56,13 +56,13 @@ ecu: "Unknown"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `advanced automotive immobilizer programming book 2017.pdf`
 - **Page:** 15
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

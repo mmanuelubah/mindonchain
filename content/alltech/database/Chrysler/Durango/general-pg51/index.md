@@ -9,7 +9,7 @@ model: "Durango"
 ecu: "Unknown"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -28,7 +28,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -43,7 +43,7 @@ ecu: "Unknown"
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** If using a remote head key, the remote does not program with the transponder during bench procedure as it does in OBD programming.
 >
@@ -52,13 +52,13 @@ ecu: "Unknown"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `advanced automotive immobilizer programming book 2017.pdf`
 - **Page:** 51
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

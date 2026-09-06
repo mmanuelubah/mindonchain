@@ -1,14 +1,14 @@
 <footer class="footer">
   <div class="footer__inner">
-    <div class="footer__content" style="text-align:center; font-size:0.9rem; opacity:0.8;">
+    <div class="footer__content" style="text-align:center; font-size:1rem; opacity:0.8;">
       <span>{{ .Site.Params.footer.copyright }} — {{ .Site.Title }}</span>
       <br>
       <a href="https://www.linkedin.com/in/chinaza-ubanatu-05a983184/" target="_blank" rel="noopener"
-        style="margin:0 8px;">LinkedIn</a> |
-      <a href="https://github.com/mmanuelubah" target="_blank" rel="noopener" style="margin:0 8px;">GitHub</a> |
-      <a href="https://x.com/mmanuelubah" target="_blank" rel="noopener" style="margin:0 8px;">Twitter</a>
+        style="margin:0 8px; display:inline-block; min-width:44px; min-height:44px; line-height:44px;">LinkedIn</a> |
+      <a href="https://github.com/mmanuelubah" target="_blank" rel="noopener" style="margin:0 8px; display:inline-block; min-width:44px; min-height:44px; line-height:44px;">GitHub</a> |
+      <a href="https://x.com/mmanuelubah" target="_blank" rel="noopener" style="margin:0 8px; display:inline-block; min-width:44px; min-height:44px; line-height:44px;">Twitter</a>
       <br>
-      <span style="font-size:0.85rem;">Lagos, Nigeria 🇳🇬. Internet</span>
+      <span style="font-size:1rem;">Lagos, Nigeria. Internet</span>
     </div>
   </div>
 </footer>
@@ -20,11 +20,19 @@
 <script>
   const backToTop = document.getElementById('back-to-top');
 
+  let isScrolling = false;
+
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      backToTop.classList.add('show');
-    } else {
-      backToTop.classList.remove('show');
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        if (window.scrollY > 400) {
+          backToTop.classList.add('show');
+        } else {
+          backToTop.classList.remove('show');
+        }
+        isScrolling = false;
+      });
+      isScrolling = true;
     }
   });
 

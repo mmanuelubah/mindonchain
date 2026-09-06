@@ -9,7 +9,7 @@ model: "Siemens Ems2"
 ecu: "Unknown"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -28,7 +28,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -41,7 +41,7 @@ ecu: "Unknown"
 5. For GM Siemens/Continental D42: Connect K-Line to pin 56.
 6. For GM Siemens/Continental D42: Connect Ground (GND) to pin 28.
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - For BMW MINI/ROVER Siemens EMS2 / EMS5150 (FLASH 29F400BB): Connect +12V power to pins 118, 120, and 121.
 - For BMW MINI/ROVER Siemens EMS2 / EMS5150: Connect K-Line to pin 117.
@@ -52,13 +52,13 @@ ecu: "Unknown"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `50 PCM PINES CAN.pdf`
 - **Page:** 44
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

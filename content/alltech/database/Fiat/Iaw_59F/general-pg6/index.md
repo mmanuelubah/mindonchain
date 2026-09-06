@@ -9,7 +9,7 @@ model: "Iaw 59F"
 ecu: "Unknown"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -28,7 +28,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -43,7 +43,7 @@ ecu: "Unknown"
 5. For MAGNETI MARELLI FIAT IAW 5SF4 / IAW 5SF.XX: Connect GND to pin 15.
 6. For MAGNETI MARELLI FIAT IAW 5SF4 / IAW 5SF.XX: Connect KLINE to pin 10.
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - For MAGNETI MARELLI FIAT IAW 59F/5AF/4AF: Connect +12V to pins 4 and 17.
 - For MAGNETI MARELLI FIAT IAW 59F/5AF/4AF: Connect GND to pins 10 and 34.
@@ -54,13 +54,13 @@ ecu: "Unknown"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `50 PCM PINES CAN.pdf`
 - **Page:** 6
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

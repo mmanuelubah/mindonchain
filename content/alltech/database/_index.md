@@ -4,7 +4,7 @@ date: 2026-08-23
 draft: false
 type: database
 cascade:
-  type: database
+ type: database
 ---
 
 Welcome to the **MindOnChain ECU Database & Guides** hub.

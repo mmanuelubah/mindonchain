@@ -9,7 +9,7 @@ model: "Grand Cherokee"
 ecu: "9S12"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "9S12"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -29,7 +29,7 @@ ecu: "9S12"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -45,26 +45,26 @@ ecu: "9S12"
 6. Click the blue 'File' button and open the saved SMOK BIN file.
 7. Confirm Tango recognizes the file, which displays existing keys and allows viewing the Login/PIN via the 'i' button.
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - Confirm Tango recognizes the file, which displays existing keys and allows viewing the Login/PIN via the 'i' button.
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** Always click the Verify button before saving to ensure an incorrectly read BIN file is not saved or converted.
 >
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `advanced automotive immobilizer programming book 2017.pdf`
 - **Page:** 50
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

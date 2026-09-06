@@ -9,7 +9,7 @@ model: "X3"
 ecu: "EWS4 (2L86D 80 QFP)"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "EWS4 (2L86D 80 QFP)"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -29,7 +29,7 @@ ecu: "EWS4 (2L86D 80 QFP)"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -45,7 +45,7 @@ ecu: "EWS4 (2L86D 80 QFP)"
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** EWS4 modules feature a white label with black writing, whereas EWS3 modules feature green text.
 >
@@ -54,13 +54,13 @@ ecu: "EWS4 (2L86D 80 QFP)"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `advanced automotive immobilizer programming book 2017.pdf`
 - **Page:** 13
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

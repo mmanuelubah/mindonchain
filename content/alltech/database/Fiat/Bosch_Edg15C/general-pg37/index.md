@@ -9,7 +9,7 @@ model: "Bosch Edg15C"
 ecu: "Unknown"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -28,7 +28,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -40,7 +40,7 @@ ecu: "Unknown"
 2. For FIAT/ALFA/LANCIA BOSCH EDC15C7 SPECIAL (Normal / Recovery Mode): Connect +12V to pins 4 and 58; KLINE to pin 48; GND to pin 1.
 3. For FIAT/ALFA/LANCIA Special Mode (Immobiliser Bypass): Connect all Normal/Recovery Mode pins, plus GND to pin 91, FX 15500-16100 Hz Square Wave 0/5V to pin 100, FY 15500-16100 Hz Square Wave Inverted 0/5V to pin 99, and FZ 9800-10200 Hz Square Wave 0/5V to pin 103.
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - For SMART BOSCH EDG15C-5.X: Connect +12V to pins 106 and 114; KLINE to pin 110; GND to pin 116.
 - For FIAT/ALFA/LANCIA BOSCH EDC15C7 SPECIAL (Normal / Recovery Mode): Connect +12V to pins 4 and 58; KLINE to pin 48; GND to pin 1.
@@ -48,7 +48,7 @@ ecu: "Unknown"
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** If ECU is Virgin, Special Mode Pins are not required.
 >
@@ -59,13 +59,13 @@ ecu: "Unknown"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `50 PCM PINES CAN.pdf`
 - **Page:** 37
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

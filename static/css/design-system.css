@@ -17,7 +17,7 @@ html[data-theme="dark"] {
   /* Text — WCAG AAA */
   --color-text-primary:     #c9d1d9;     
   --color-text-secondary:   #8b949e;     
-  --color-text-tertiary:    #484f58;     
+  --color-text-tertiary:    #7d8590;     /* 4.5:1 AA on #0d1117 */
   --color-text-inverse:     #0d1117;
 
   /* Accent & Brand (Emerald) */
@@ -127,9 +127,9 @@ html[data-theme="light"] {
   --body-letter-spacing:   0.02em;
 
   /* Scale — Major Third (1.250) */
-  --text-xs:    0.64rem;
-  --text-sm:    0.80rem;
-  --text-base:  1.00rem;
+  --text-xs:    0.75rem;  /* 12px — badges/labels only, never body text */
+  --text-sm:    0.875rem; /* 14px — captions/meta only, never body text */
+  --text-base:  1.00rem;  /* 16px — minimum for body text */
   --text-md:    1.125rem;
   --text-lg:    1.25rem;
   --text-xl:    1.563rem;
@@ -424,7 +424,7 @@ html[data-theme="light"] {
 }
 
 .trust-item__desc {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--color-text-secondary);
   margin: 0;
   line-height: var(--leading-normal);
@@ -455,10 +455,12 @@ html[data-theme="light"] {
   text-decoration: none;
   text-underline-offset: 3px;
   transition: color 0.15s ease, text-decoration-color 0.15s ease;
-  padding: var(--space-2) var(--space-1);
+  padding: var(--space-2) var(--space-3);
   min-height: 44px;
+  min-width: 44px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
 .inline-nav__link:hover {
@@ -522,50 +524,7 @@ html[data-theme="light"] {
 
 /* Skiplink removed here as it is consolidated above */
 
-/* ── Inline Navigation ───────────────────────────────────────── */
-.inline-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin-bottom: var(--space-8);
-  font-family: var(--body-font);
-  font-size: 1rem;
-}
-
-.inline-nav__link {
-  color: var(--color-text-primary);
-  text-decoration: none;
-  transition: color 0.15s;
-  padding: 0.2rem 0;
-  position: relative;
-}
-
-.inline-nav__link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--color-accent-primary);
-  transition: width 0.2s ease;
-}
-
-.inline-nav__link:hover::after,
-.inline-nav__link:focus-visible::after {
-  width: 100%;
-}
-
-.inline-nav__link:hover {
-  color: var(--color-accent-primary);
-}
-
-.inline-nav__sep {
-  color: var(--color-text-tertiary);
-  font-size: 0.8rem;
-}
+/* Duplicate .inline-nav block removed — consolidated above (line 442) */
 
 /* ═══════════════════════════════════════════════════════════════
    COMPONENT TOKENS — Blog Trust Features
@@ -613,6 +572,7 @@ html[data-theme="light"] {
   padding: 0;
   margin: 0;
   font-size: var(--text-sm);
+  line-height: var(--leading-normal);
 }
 
 .post-toc__list li {
@@ -661,7 +621,7 @@ html[data-theme="light"] {
 }
 
 .author-card__bio {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
   margin: 0 0 var(--space-3);
@@ -670,15 +630,30 @@ html[data-theme="light"] {
 .author-card__social {
   display: flex;
   gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 .author-card__social-link {
   color: var(--color-text-tertiary);
   transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .author-card__social-link:hover {
   color: var(--color-accent-primary);
+}
+
+@media (max-width: 600px) {
+  .author-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-5);
+  }
 }
 
 /* ── Share Buttons ───────────────────────────────────────────── */
@@ -695,8 +670,8 @@ html[data-theme="light"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border);

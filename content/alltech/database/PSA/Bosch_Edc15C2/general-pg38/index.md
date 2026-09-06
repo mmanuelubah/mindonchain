@@ -9,7 +9,7 @@ model: "Bosch Edc15C2"
 ecu: "Unknown"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -28,7 +28,7 @@ ecu: "Unknown"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -42,7 +42,7 @@ ecu: "Unknown"
 4. To bypass immobiliser using Special Mode on PSA EDC15C2, connect GND to Z2-G1, FX 15500-16100 Hz Square Wave 0/5V to Z2-K1, FY 15500-16100 Hz Square Wave Inverted 0/5V to Z2-J1, and FZ 9800-10200 Hz Square Wave 0/5V to Z2-G2 in addition to Normal pins.
 5. To bypass immobiliser using Special Mode on BMW/Land Rover EDC15C4, connect GND to 3-33, FX 15500-16100 Hz Square Wave 0/5V to 3-6, FY 15500-16100 Hz Square Wave Inverted 0/5V to 3-31, and FZ 9800-10200 Hz Square Wave 0/5V to 3-4 in addition to Normal pins.
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - For PSA BOSCH EDC15C2: Connect Normal/Recovery pins (+12V to Z1-D1 and Z2-M1, KLINE to Z1-B4, GND to Z2-M4).
 - For BMW / Land Rover BOSCH EDC15C4: Connect Normal/Recovery pins (+12V to 1-1,8,9 and 4-26, KLINE to 4-32, GND to 1-4).
@@ -52,7 +52,7 @@ ecu: "Unknown"
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** This connection method bypasses the immobiliser.
 >
@@ -65,13 +65,13 @@ ecu: "Unknown"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `50 PCM PINES CAN.pdf`
 - **Page:** 38
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

@@ -30,7 +30,7 @@ Switch to the EWS module. Read the current key data and note the stored ISN. If 
 
 If installing a replacement DME, use NCS Expert to write the new DME's ISN into the EWS module. This requires Expert Mode access.
 
-> ⚠️ **Warning**: Incorrect ISN alignment will prevent the vehicle from starting. Always back up both DME and EWS data before making changes.
+> **Warning**: Incorrect ISN alignment will prevent the vehicle from starting. Always back up both DME and EWS data before making changes.
 
 ## Verification
 

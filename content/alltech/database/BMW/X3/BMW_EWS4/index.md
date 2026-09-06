@@ -9,7 +9,7 @@ model: "X3"
 ecu: "EWS4"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "EWS4"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -29,7 +29,7 @@ ecu: "EWS4"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -45,20 +45,20 @@ ecu: "EWS4"
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** Ensure module identification is correct: EWS4 uses a white label with black writing, whereas EWS3 uses green text.
 >
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `advanced automotive immobilizer programming book 2017.pdf`
 - **Page:** 16
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

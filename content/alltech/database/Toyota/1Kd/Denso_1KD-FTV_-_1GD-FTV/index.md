@@ -9,7 +9,7 @@ model: "1Kd"
 ecu: "1KD-FTV / 1GD-FTV"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "1KD-FTV / 1GD-FTV"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -28,7 +28,7 @@ ecu: "1KD-FTV / 1GD-FTV"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -47,7 +47,7 @@ ecu: "1KD-FTV / 1GD-FTV"
 9. Connect Switched Power (+12V IGN) to pins G57-24 (+B), G57-17 (+B2), and G58-24 (IGSW).
 10. Connect CAN High to pin G58-35 (CANH) and CAN Low to pin G58-36 (CANL).
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - Connect Ground (GND) to pin C36-12 (E1).
 - Connect Constant Power (+12V BATT) to pin G55-24 (BATT).
@@ -60,7 +60,7 @@ ecu: "1KD-FTV / 1GD-FTV"
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** Ensure proper power supply voltage before switching IGN power.
 >
@@ -69,13 +69,13 @@ ecu: "1KD-FTV / 1GD-FTV"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `TOYOTA-ECU-PINOUT-ECU-PINOUT.pdf`
 - **Page:** 4
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

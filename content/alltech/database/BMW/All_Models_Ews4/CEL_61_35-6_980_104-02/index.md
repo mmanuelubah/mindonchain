@@ -9,7 +9,7 @@ model: "All Models (Ews4)"
 ecu: "61.35-6 980 104-02"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "61.35-6 980 104-02"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -29,7 +29,7 @@ ecu: "61.35-6 980 104-02"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -46,7 +46,7 @@ ecu: "61.35-6 980 104-02"
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** Verify whether the MCU is secured or unsecured based on the number of solder wires (4 wires for unsecured, 6 or more for secured).
 >
@@ -55,13 +55,13 @@ ecu: "61.35-6 980 104-02"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `advanced automotive immobilizer programming book 2017.pdf`
 - **Page:** 14
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

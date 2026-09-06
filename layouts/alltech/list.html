@@ -90,7 +90,7 @@
             <span class="difficulty-badge {{ .Params.difficulty }}">{{ .Params.difficulty | title }}</span>
             {{ end }}
             {{ if .Params.private }}
-            <span class="locked-badge">🔒 Buyer Only</span>
+            <span class="locked-badge">[Buyer Only]</span>
             {{ end }}
           </div>
           <h2 class="guide-item-title">{{ .Title }}</h2>
@@ -114,8 +114,8 @@
     
     <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem;">
       <h3 style="margin-top: 0; font-family: var(--pixel-font);">How Concierge Sourcing Works</h3>
-      <p style="margin-bottom: 0.5rem; color: var(--text-color-secondary);">Can't find what you need? I source engines, ECUs, and modules directly from Ladipo Market.</p>
-      <ol style="margin-bottom: 0; padding-left: 1.2rem; color: var(--text-color-secondary); font-size: 0.95rem; line-height: 1.6;">
+      <p style="margin-bottom: 0.5rem; color: var(--text-color-secondary); font-size: 1rem;">Can't find what you need? I source engines, ECUs, and modules directly from Ladipo Market.</p>
+      <ol style="margin-bottom: 0; padding-left: 1.2rem; color: var(--text-color-secondary); font-size: 1rem; line-height: 1.6;">
         <li><strong>Browse & Request</strong> — Find the part you need and tap "Request a Quote" to start a WhatsApp conversation.</li>
         <li><strong>I Source It</strong> — I personally source the part from Ladipo Market, Lagos's largest auto-parts hub.</li>
         <li><strong>Inspection & Verification</strong> — Every part is inspected and verified before you commit to buying.</li>
@@ -153,7 +153,7 @@
              <span class="shop-item-badge" style="background: var(--color-trust-badge); color: var(--text-color-secondary);">{{ .Params.category | upper }}</span>
              {{ end }}
           </div>
-          <span style="font-size: 0.9rem; font-weight: 600; color: #25D366; margin-top: auto; display: flex; align-items: center;">
+          <span style="font-size: 1rem; font-weight: 600; color: var(--color-accent-primary); margin-top: auto; display: flex; align-items: center;">
             Request a Quote →
           </span>
         </div>
@@ -257,6 +257,11 @@
     cursor: pointer;
     transition: color 0.15s, border-color 0.15s;
     position: relative;
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .alltech-tab:hover {
@@ -382,9 +387,14 @@
     border-radius: 20px;
     background: transparent;
     color: var(--text-color-secondary);
-    font-size: 0.85rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.15s;
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .filter-btn:hover {
@@ -473,16 +483,16 @@
   }
 
   .guide-item-excerpt {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-color-secondary);
     margin: 0 0 0.75rem;
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   .guide-item-footer {
     display: flex;
     gap: 1rem;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     color: var(--text-color-secondary);
   }
 

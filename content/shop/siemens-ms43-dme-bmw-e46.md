@@ -9,18 +9,18 @@ in_stock: true
 stock_count: 1
 condition: "Refurbished — Bench Tested"
 compatibility:
-  - "BMW E46 330i (2001-2005)"
-  - "BMW E46 330ci (2001-2005)"
-  - "BMW E46 330xi (2001-2005)"
-  - "BMW E53 X5 3.0i (2001-2006)"
+ - "BMW E46 330i (2001-2005)"
+ - "BMW E46 330ci (2001-2005)"
+ - "BMW E46 330xi (2001-2005)"
+ - "BMW E53 X5 3.0i (2001-2006)"
 specs:
-  Manufacturer: "Siemens"
-  Part_Family: "MS43"
-  Connector: "88-pin + 40-pin"
-  Voltage: "12V"
-  Engine: "M54B30"
+ Manufacturer: "Siemens"
+ Part_Family: "MS43"
+ Connector: "88-pin + 40-pin"
+ Voltage: "12V"
+ Engine: "M54B30"
 images:
-  - "/images/placeholder.jpg"
+ - "/images/placeholder.jpg"
 ---
 
 The **Siemens MS43** is the digital motor electronics (DME) unit for BMW's 3.0L M54B30 engine. This refurbished unit has passed all bench tests including injector driver verification, ignition coil output checks, and EEPROM integrity validation.

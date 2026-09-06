@@ -9,18 +9,18 @@ in_stock: true
 stock_count: 3
 condition: "Refurbished — Bench Tested"
 compatibility:
-  - "BMW E46 320i (2001-2005)"
-  - "BMW E46 325i (2001-2005)"
-  - "BMW E46 325ci (2001-2005)"
+ - "BMW E46 320i (2001-2005)"
+ - "BMW E46 325i (2001-2005)"
+ - "BMW E46 325ci (2001-2005)"
 specs:
-  Manufacturer: "Bosch"
-  Part_Family: "ME7.5"
-  Connector: "134-pin"
-  Voltage: "12V"
-  Engine: "M54B22 / M54B25"
+ Manufacturer: "Bosch"
+ Part_Family: "ME7.5"
+ Connector: "134-pin"
+ Voltage: "12V"
+ Engine: "M54B22 / M54B25"
 related_guide: "/posts/how-to-flash-me75-via-bdm/"
 images:
-  - "/images/placeholder.jpg"
+ - "/images/placeholder.jpg"
 ---
 
 The **Bosch ME7.5.10** is the factory engine management system for BMW's M54 inline-6 engine family. This refurbished unit has been fully bench-tested, flash-verified, and is ready for direct plug-and-play installation or custom tuning.

@@ -9,7 +9,7 @@ model: "All Models (Ews4)"
 ecu: "2L86D"
 ---
 
-## 🚗 Vehicle Details
+## Vehicle Details
 
 | Field | Value |
 |-------|-------|
@@ -19,7 +19,7 @@ ecu: "2L86D"
 
 ---
 
-## 🔌 ECU Details
+## ECU Details
 
 | Field | Value |
 |-------|-------|
@@ -29,7 +29,7 @@ ecu: "2L86D"
 
 ---
 
-## 🔧 Programming Instructions
+## Programming Instructions
 
 **Method:** `BENCH`
 
@@ -43,13 +43,13 @@ ecu: "2L86D"
 4. Place an allowed transponder in the Tango key slot, select the key slot number to program, and click the 'Write' button.
 5. Reinstall the EWS unit into the vehicle and test the newly programmed key.
 
-### 📌 Wiring / Pin Connections (from steps)
+### Wiring / Pin Connections (from steps)
 
 - Connect the AK90 to the PC, select the device type (e.g., 2L86D Cable or Soldered), and click OK.
 
 ---
 
-### ⚠️ Safety Notes
+### Safety Notes
 
 > **Warning:** Ensure an allowed transponder is correctly placed in the Tango key slot before writing.
 >
@@ -58,13 +58,13 @@ ecu: "2L86D"
 
 ---
 
-## 📖 Source
+## Source
 
 - **Document:** `advanced automotive immobilizer programming book 2017.pdf`
 - **Page:** 18
 
 ---
 
-## 🖼️ Pinout Diagram
+## Pinout Diagram
 
 *Pinout images will be linked from Google Drive.*

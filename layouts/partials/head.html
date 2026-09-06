@@ -3,7 +3,7 @@
 {{ if .Params.noindex }}
 <meta name="robots" content="noindex" />
 {{ end }}
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author"
     content="{{ if .Params.author }}{{ .Params.author }}{{ else }}{{ range .Site.Author }}{{ . }} {{ end }}{{ end }}">
 <meta name="description"
@@ -47,8 +47,8 @@
         transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Force text color on links/lists to inherit */
-    a, li, p {
+    /* Force text color on lists/paragraphs to inherit */
+    li, p {
         color: inherit;
         font-family: inherit;
     }

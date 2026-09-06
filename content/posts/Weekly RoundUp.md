@@ -3,7 +3,7 @@ title: Week 4 • January 2026
 date: 2026-01-30
 draft: false
 tags:
-  - weekly-roundup
+ - weekly-roundup
 type: posts
 week: 4
 ---

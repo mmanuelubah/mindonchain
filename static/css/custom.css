@@ -64,7 +64,9 @@
   background: var(--card-bg);
   color: var(--accent-color);
   border: 2px solid var(--accent-color);
-  padding: 8px 12px;
+  padding: 8px 16px;
+  min-width: 44px;
+  min-height: 44px;
   font-family: 'VT323', monospace;
   font-size: 1.2rem;
   cursor: pointer;
@@ -74,6 +76,10 @@
   transition: all 0.3s ease;
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 #back-to-top.show {
@@ -109,6 +115,16 @@
 /* ----------------------------------------------------------
    1. POST BODY TYPOGRAPHY (Inter)
    ---------------------------------------------------------- */
+
+/* Touch Target Fixes for Core UI Elements */
+.theme-toggle,
+.menu-trigger {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .post-content p,
 .post-content li,
 .post-content blockquote,
@@ -197,7 +213,7 @@
   background-color: #2b1d14; /* Dark warm brown like the reference */
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #fcf8f2; /* Light cream text */
@@ -310,7 +326,7 @@ html[data-theme="dark"] .owner-tooltip::after {
 
 .elegant-gate-form label {
   font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-color-secondary, #4a5568);
   margin-bottom: 0.6rem;
@@ -353,7 +369,7 @@ html[data-theme="dark"] .owner-tooltip::after {
 }
 
 .moc-pw-error {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   color: #c0392b;
   min-height: 1.1em;
   margin-top: 0.5rem;
