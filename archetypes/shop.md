@@ -13,7 +13,7 @@ compatibility:
 features:
   - "Plug and play"
 images:
-  - "/images/placeholder.jpg"
+  - "https://drive.google.com/uc?export=view&id=YOUR_FILE_ID"
 ---
 
 Product description goes here.

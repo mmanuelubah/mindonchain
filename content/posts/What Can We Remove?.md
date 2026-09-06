@@ -11,24 +11,24 @@ cover: /images/covers/W49.jpeg
 ---
 
 
-In 2021, the noise got too loud. My screen was filled with other people's highlights, and i felt behind. 
-I was tired, anxious, and scrolling through a life that wasn't mine. 
+In 2021, the noise got too loud. My screen was filled with other people's highlights, and i felt behind.
+I was tired, anxious, and scrolling through a life that wasn't mine.
 
 So I started to quietly unfollow.
 I kept only what built me up.
 The noise faded. My mind cleared.
-I could breathe again. 
+I could breathe again.
 
 We often treat our lives and our businesses like our social feeds.
 
 We add and add. More features. More steps. More rules.
-Interdependencies proliferate, and gradually strangle us. 
+Interdependencies proliferate, and gradually strangle us.
 We think more means better.
 But really, more often means more clutter.
 
 While building my startup, i remembered that feeling of digital weight. I didn't want to create another crowded space. Another beach full of trash no one cleans.
 
-So i am building with the same intention: 
+So i am building with the same intention:
 
 * **Remove before you add.**
 * **Simplify before you complicate.**

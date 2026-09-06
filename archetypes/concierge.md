@@ -8,7 +8,7 @@ condition: "tokunbo"
 compatibility:
   - "Make Model (Year-Year)"
 images:
-  - "/images/concierge/placeholder.jpg"
+  - "https://drive.google.com/uc?export=view&id=YOUR_FILE_ID"
 tags: []
 ---
 

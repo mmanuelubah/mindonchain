@@ -6,5 +6,5 @@ tags:
   - weekly-roundup
 type: posts
 week: 5                        # Week number of the year
+cover: "https://drive.google.com/uc?export=view&id=YOUR_FILE_ID"
 ---
-
